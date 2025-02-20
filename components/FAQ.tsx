@@ -11,14 +11,14 @@ const faqs = [
       "Overdrive H is a powerful semi-legit scripts provider, offering safe and verified scripts for various purposes.",
   },
   {
-    question: "How do I use the scripts?",
+    question: "How do I use the script?",
     answer:
       "Simply copy the provided script and execute it on your executor.",
   },
   {
     question: "Are the scripts safe to use?",
     answer:
-      "Yes, all our scripts are verified and tested for safety. However, always use scripts responsibly and in accordance with the terms of service of the platforms you're using them on.",
+      "Yes, the script are verified and tested for safety. However, always use scripts responsibly and in accordance with the terms of service of the platforms you're using them on.",
   },
   {
     question: "Does Overdrive H requires a key to get access?",
