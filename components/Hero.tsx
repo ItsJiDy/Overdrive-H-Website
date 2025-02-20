@@ -47,8 +47,8 @@ const Hero = () => {
               <Code className="h-6 w-6 text-blue-500 mb-4" />
               Script:
             </DialogTitle>
-            <div className="relative w-[75%]">
-              <p className="bg-gray-800 p-4 rounded break-all w-[75%]">
+            <div className="relative w-[80%]">
+              <p className="bg-gray-800 p-4 rounded break-all">
                 <code className="text-white-400">
                   <code className="text-blue-400">loadstring</code>
                     (game:
