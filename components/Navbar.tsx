@@ -6,7 +6,7 @@ import Link from "next/link"
 import { Menu, X, Home, MessageCircle, FileText } from "lucide-react"
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(window.innerWidth >= 1024)
   const navRef = useRef<HTMLDivElement>(null)
 
   const navItems = [
@@ -38,7 +38,7 @@ const Navbar = () => {
           />
           <div className="text-2xl font-bold">Overdrive H</div>
         </div>
-        <div className="right-[95%]">
+        <div className="md:hidden">
           <button onClick={() => setIsOpen(!isOpen)}>{isOpen ? <X /> : <Menu />}</button>
         </div>
         <div
