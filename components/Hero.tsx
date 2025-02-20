@@ -47,8 +47,8 @@ const Hero = () => {
               <Code className="h-6 w-6 text-blue-500 mb-4" />
               Script:
             </DialogTitle>
-            <div className="relative w-65">
-              <pre className="bg-gray-800 p-4 rounded break-all">
+            <div className="relative">
+              <pre className="bg-gray-800 p-4 rounded whitespace-pre-wrap">
                 <code className="text-white-400">
                   <code className="text-blue-400">loadstring</code>
                     (game:
