@@ -13,7 +13,7 @@ const Hero = () => {
 
   const handleCopy = useCallback(() => {
     navigator.clipboard
-      .writeText('loadstring(game:HttpGet("https://overdrivehub.xyz/v1/auth"))()')
+      .writeText('ODH_KEY = "" -- if you are a free user, enter your key here to auto validate.\n\nloadstring(game:HttpGet("https://overdrivehub.xyz/v1/auth"))()')
       .then(() => {
         setIsCopied(true)
         setTimeout(() => setIsCopied(false), 2000)
@@ -47,9 +47,13 @@ const Hero = () => {
               <Code className="h-6 w-6 text-blue-500 mb-4" />
               Script:
             </DialogTitle>
-            <div className="relative w-[80%]">
+            <div className="relative w-[90%]">
               <p className="bg-gray-800 p-4 rounded break-all">
                 <code className="text-white-400">
+                  ODH_KEY = <code className="text-orange-400">""</code>
+                  <code className="text-orange-400"> -- if you are a free user, enter your key here to auto validate.</code>
+                  <br></br>
+                  <br></br>
                   <code className="text-blue-400">loadstring</code>
                     (game:
                   <code className="text-blue-400">HttpGet</code>
