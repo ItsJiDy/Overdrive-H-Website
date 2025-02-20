@@ -44,9 +44,9 @@ const Hero = () => {
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogContent className="bg-black bg-opacity-90 text-white p-6 rounded-lg">
             <DialogTitle className="text-xl font-bold mb-4 text-white">Script:</DialogTitle>
-            <div className="relative w-20 break-all">
+            <div className="relative w-50">
               <pre className="bg-gray-800 p-4 rounded">
-                <code className="text-white-400">loadstring(game:HttpGet(<code className="text-orange-400">"https://overdrivehub.xyz/v1/auth"</code>))()</code>
+                <code className="text-white-50">loadstring(game:HttpGet(<code className="text-orange-50">"https://overdrivehub.xyz/v1/auth"</code>))()</code>
               </pre>
               <button
                 onClick={handleCopy}
