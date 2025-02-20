@@ -16,7 +16,7 @@ const faqs = [
       "Simply copy the provided script and execute it on your executor.",
   },
   {
-    question: "Are the scripts safe to use?",
+    question: "Is the script safe to use?",
     answer:
       "Yes, the script are verified and tested for safety. However, always use script responsibly and in accordance with the terms of service.",
   },
