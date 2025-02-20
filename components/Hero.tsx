@@ -48,7 +48,7 @@ const Hero = () => {
               Script:
             </DialogTitle>
             <div className="relative">
-              <pre className="absolute bg-gray-800 p-4 rounded whitespace-pre-wrap">
+              <p className="bg-gray-800 p-4 rounded whitespace-pre-wrap">
                 <code className="text-white-400">
                   <code className="text-blue-400">loadstring</code>
                     (game:
@@ -56,7 +56,7 @@ const Hero = () => {
                     (<code className="text-orange-400">"https://overdrivehub.xyz/v1/auth"</code>
                     ))()
                   </code>
-              </pre>
+              </p>
               <button
                 onClick={handleCopy}
                 className="absolute top-2 right-2 p-2 bg-gray-700 rounded-md hover:bg-gray-600 transition-colors duration-200"
