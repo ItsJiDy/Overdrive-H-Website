@@ -38,6 +38,7 @@ const Features = () => {
   return (
     <FadeInSection>
       <section className="py-16 px-4">
+        <b id="executions">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold mb-8 text-center text-white">Features</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

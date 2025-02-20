@@ -13,7 +13,7 @@ const Hero = () => {
 
   const handleCopy = useCallback(() => {
     navigator.clipboard
-      .writeText('ODH_KEY = "" -- if you are a free user, enter your key here to auto validate.\n\nloadstring(game:HttpGet("https://overdrivehub.xyz/v1/auth"))()')
+      .writeText('ODH_KEY = "" -- if you are a free user, enter your key here to auto validate.\n\nloadstring(game:HttpGet("https://api.overdrivehub.xyz/v1/auth"))()')
       .then(() => {
         setIsCopied(true)
         setTimeout(() => setIsCopied(false), 2000)

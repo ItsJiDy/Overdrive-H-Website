@@ -6,7 +6,7 @@ import Link from "next/link"
 import { Menu, X, Home, MessageCircle, FileText } from "lucide-react"
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(window.innerWidth >= 1024)
+  const [isOpen, setIsOpen] = useState(false)
   const navRef = useRef<HTMLDivElement>(null)
 
   const navItems = [
