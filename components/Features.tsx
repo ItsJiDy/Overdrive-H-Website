@@ -18,7 +18,7 @@ const features = [
     description: "Tailor it to your needs effortlessly.",
   },
   {
-    icon: <Mobile className="h-6 w-6" />,
+    icon: <MobileIcon className="h-6 w-6" />,
     title: "Mobile Friendly",
     description: "Enjoy a seamless experience across all your devices.",
   },
