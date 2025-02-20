@@ -51,7 +51,7 @@ const Hero = () => {
               <p className="bg-gray-800 p-4 rounded break-all">
                 <code className="text-white-400">
                   ODH_KEY = <code className="text-orange-400">""</code>
-                  <code className="text-grey-400"> -- if you are a free user, enter your key here to auto validate.</code>
+                  <code className="text-gray-400"> -- if you are a free user, enter your key here to auto validate.</code>
                   <br></br>
                   <br></br>
                   <code className="text-blue-400">loadstring</code>
