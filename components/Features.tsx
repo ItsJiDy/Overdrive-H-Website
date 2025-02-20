@@ -1,4 +1,4 @@
-import { Zap, Palette, Sliders, Mobile, Key, Layout } from "lucide-react"
+import { Zap, Palette, Sliders, Flag, Key, Layout } from "lucide-react"
 import { FadeInSection } from "@/utils/fadeInSection"
 
 const features = [
@@ -18,8 +18,8 @@ const features = [
     description: "Tailor it to your needs effortlessly.",
   },
   {
-    icon: <Mobile className="h-6 w-6" />,
-    title: "Mobile Friendly",
+    icon: <Flag className="h-6 w-6" />,
+    title: "Devices",
     description: "Enjoy a seamless experience across all your devices.",
   },
   {

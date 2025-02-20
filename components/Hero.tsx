@@ -1,13 +1,25 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useCallback } from "react"
 import Image from "next/image"
 import { FadeInSection } from "@/utils/fadeInSection"
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
+import { Copy, Code } from "lucide-react"
 
 const Hero = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [isCopied, setIsCopied] = useState(false)
+
+  const handleCopy = useCallback(() => {
+    navigator.clipboard
+      .writeText("local overdrivehub = require('./overdrive')")
+      .then(() => {
+        setIsCopied(true)
+        setTimeout(() => setIsCopied(false), 2000)
+      })
+      .catch((err) => console.error("Failed to copy: ", err))
+  }, [])
 
   return (
     <FadeInSection>
@@ -25,15 +37,26 @@ const Hero = () => {
           onClick={() => setIsDialogOpen(true)}
           className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all duration-300 ease-in-out transform hover:scale-105"
         >
+          <Code className="h-6 w-6" />
           Get Script
         </Button>
 
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogContent className="bg-black bg-opacity-90 text-white p-6 rounded-lg">
             <DialogTitle className="text-xl font-bold mb-4 text-white">Script:</DialogTitle>
-            <pre className="bg-gray-800 p-4 rounded">
-              <code className="text-green-400 break-all">loadstring(game:HttpGet("https://overdrivehub.xyz/v1/auth"))()</code>
-            </pre>
+            <div className="relative">
+              <pre className="bg-gray-800 p-4 rounded">
+                <code className="text-green-400">local overdrivehub = require('./overdrive')</code>
+              </pre>
+              <button
+                onClick={handleCopy}
+                className="absolute top-2 right-2 p-2 bg-gray-700 rounded-md hover:bg-gray-600 transition-colors duration-200"
+                aria-label="Copy to clipboard"
+              >
+                <Copy className="w-4 h-4" />
+              </button>
+            </div>
+            {isCopied && <p className="text-green-400 mt-2 text-sm">Copied to clipboard!</p>}
           </DialogContent>
         </Dialog>
       </section>
