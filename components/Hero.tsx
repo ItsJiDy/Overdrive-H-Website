@@ -47,11 +47,11 @@ const Hero = () => {
               <Code className="h-6 w-6 text-blue-500 mb-4" />
               Script:
             </DialogTitle>
-            <div className="relative w-[90%]">
+            <div className="relative w-[100%]">
               <p className="bg-gray-800 p-4 rounded break-all">
                 <code className="text-white-400">
                   ODH_KEY = <code className="text-orange-400">""</code>
-                  <code className="text-orange-400"> -- if you are a free user, enter your key here to auto validate.</code>
+                  <code className="text-grey-400"> -- if you are a free user, enter your key here to auto validate.</code>
                   <br></br>
                   <br></br>
                   <code className="text-blue-400">loadstring</code>
