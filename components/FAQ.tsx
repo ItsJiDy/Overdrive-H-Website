@@ -18,12 +18,12 @@ const faqs = [
   {
     question: "Are the scripts safe to use?",
     answer:
-      "Yes, the script are verified and tested for safety. However, always use scripts responsibly and in accordance with the terms of service of the platforms you're using them on.",
+      "Yes, the script are verified and tested for safety. However, always use script responsibly and in accordance with the terms of service.",
   },
   {
     question: "Does Overdrive H requires a key to get access?",
     answer:
-      "Yes, Overdrive H has key system to get access in order for the owner to earn some money..",
+      "Yes, Overdrive H has key system to get access in order for the owner to earn some money.",
   },
 ]
 
