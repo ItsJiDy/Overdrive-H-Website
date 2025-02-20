@@ -38,7 +38,7 @@ const Navbar = () => {
           />
           <div className="text-2xl font-bold">Overdrive H</div>
         </div>
-        <div className="md:hidden">
+        <div>
           <button onClick={() => setIsOpen(!isOpen)}>{isOpen ? <X /> : <Menu />}</button>
         </div>
         <div
