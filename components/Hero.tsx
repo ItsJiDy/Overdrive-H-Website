@@ -43,11 +43,11 @@ const Hero = () => {
 
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogContent className="bg-black bg-opacity-50 text-white p-6 rounded-lg">
-            <DialogTitle className="text-xl font-bold mb-4 text-white w-50">
-              <Code className="h-6 w-6" />
+            <DialogTitle className="text-xl font-bold mb-4 text-white w-70">
+              <Code className="h-6 w-6 text-blue-500 mb-4" />
               Script:
             </DialogTitle>
-            <div className="relative w-70">
+            <div className="relative w-65">
               <pre className="bg-gray-800 p-4 rounded break-all">
                 <code className="text-white-400">
                   <code className="text-blue-400">loadstring</code>
