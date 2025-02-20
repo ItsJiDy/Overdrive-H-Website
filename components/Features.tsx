@@ -30,7 +30,7 @@ const features = [
   {
     icon: <Layout className="h-6 w-6" />,
     title: "Modern Interface",
-    description: "Fresh and Clean Interface for user experience..",
+    description: "Fresh and Clean Interface for user experience.",
   },
 ]
 
