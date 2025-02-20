@@ -10,7 +10,7 @@ export default function Home() {
       className="min-h-screen bg-fixed bg-cover bg-center"
       style={{ backgroundImage: "url('https://i.pinimg.com/originals/55/01/60/5501609ee45d514d1f2c4a63502045e2.gif')" }}
     >
-      <div className="bg-black bg-opacity-60 min-h-screen">
+      <div className="bg-black bg-opacity-50 min-h-screen">
         <Navbar />
         <Hero />
         <Features />
