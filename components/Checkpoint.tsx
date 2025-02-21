@@ -1,10 +1,11 @@
+import Script from 'next/script';
 import { FadeInSection } from "@/utils/fadeInSection"
 
 export default function Checkpoint() {
   let completedCaptcha
 
   return (
-    <script
+    <Script
         src="https://challenges.cloudflare.com/turnstile/v0/api.js"
         async
         defer
