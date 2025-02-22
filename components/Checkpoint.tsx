@@ -1,3 +1,5 @@
+"use client";
+
 import Script from 'next/script';
 import { FadeInSection } from "@/utils/fadeInSection"
 
