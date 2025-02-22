@@ -5,11 +5,13 @@ export default function Checkpoint() {
   let completedCaptcha
 
   return (
+    <>
     <Script
         src="https://challenges.cloudflare.com/turnstile/v0/api.js"
         async
         defer
       ></Script>
+      </>
     <FadeInSection>
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="max-w-md w-full p-6 bg-transparent border-2 border-gray-300 rounded-lg transition-colors hover:border-blue-500">
