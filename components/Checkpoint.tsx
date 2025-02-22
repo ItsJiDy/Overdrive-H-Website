@@ -1,4 +1,4 @@
-import Script from 'next/script';
+-import Script from 'next/script';
 import { FadeInSection } from "@/utils/fadeInSection"
 
 export default function Checkpoint() {
@@ -9,7 +9,7 @@ export default function Checkpoint() {
         src="https://challenges.cloudflare.com/turnstile/v0/api.js"
         async
         defer
-      ></script>
+      ></Script>
     <FadeInSection>
     <div className="flex items-center justify-center min-h-screen bg-gray-900">
       <div className="bg-black bg-opacity-50 p-6 rounded-lg text-white max-w-md text-center">
