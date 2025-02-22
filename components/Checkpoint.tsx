@@ -2,9 +2,17 @@
 
 import Script from 'next/script';
 import { FadeInSection } from "@/utils/fadeInSection"
+import { useEffect } from "react";
 
 export default function Checkpoint() {
   let completedCaptcha
+
+  useEffect(() => {
+      window.onCaptchaSuccess = () => {
+          completedCaptcha = true
+          document.getElementById("Proceed").textContent = "Proceed"
+      }
+  }, [])
 
   return (
     <>
@@ -14,7 +22,8 @@ export default function Checkpoint() {
         defer
       ></Script>
     <FadeInSection>
-      <div className="max-w-md w-full p-6 bg-transparent border-2 border-gray-300 rounded-lg transition-colors hover:border-blue-500">
+    <div className="min-h-screen flex items-center justify-center bg-black/50">
+      <div className="max-w-md w-full p-6 bg-transparent border-2 rounded-lg transition-colors hover:border-blue-500">
         <h1 className="text-2xl font-bold text-center mb-4">Overdrive H</h1>
         <p className="text-gray-600 mb-6 text-center">
           Completed <b>0</b> of <b>1</b>
@@ -22,10 +31,7 @@ export default function Checkpoint() {
         <div
           className="cf-turnstile"
           data-sitekey="0x4AAAAAAA9l-KYvvzkYwsM8"
-          data-callback={() => {
-              completedCaptcha = true
-              document.getElementById("Proceed").textContent = "Proceed"
-          }}
+          data-callback="onCaptchaSuccess"
         ></div>
         <div className="flex justify-center">
           <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" id="Proceed" onClick={() => {
@@ -36,6 +42,7 @@ export default function Checkpoint() {
               }
           }}>Please complete the captcha first!</button>
         </div>
+      </div>
       </div>
     </FadeInSection>
     </>
