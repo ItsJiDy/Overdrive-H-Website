@@ -1,4 +1,4 @@
--import Script from 'next/script';
+import Script from 'next/script';
 import { FadeInSection } from "@/utils/fadeInSection"
 
 export default function Checkpoint() {
@@ -11,12 +11,11 @@ export default function Checkpoint() {
         defer
       ></Script>
     <FadeInSection>
-    <div className="flex items-center justify-center min-h-screen bg-gray-900">
-      <div className="bg-black bg-opacity-50 p-6 rounded-lg text-white max-w-md text-center">
-        <h2 className="text-2xl font-bold mb-2">Title Here</h2>
-        <p className="mb-4">
-           Completed <b id="COMPLETED_CHECKPOINTS">0</b> of <b id="CHECKPOINTS">3</b> <br>Key Duration: <b id="KEY_DURATION">0 Hours</b><br> Target Service: <b id="TARGET_SERVICE">Linkvertise</b>
-            <p style={{ wordWrap: "break-word" }} id="desc">Click <b>'Continue'</b> in order to proceed to the next checkpoint.</p>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="max-w-md w-full p-6 bg-transparent border-2 border-gray-300 rounded-lg transition-colors hover:border-blue-500">
+        <h1 className="text-2xl font-bold text-center mb-4">Overdrive H</h1>
+        <p className="text-gray-600 mb-6 text-center">
+          Test
         </p>
         <div
           className="cf-turnstile"
@@ -26,9 +25,9 @@ export default function Checkpoint() {
             alert("you completed the captcha")
           }}
         ></div>
-        <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md" style={{ borderRadius: '5px' }}>
-          Please wait 0 seconds
-        </button>
+        <div className="flex justify-center">
+          <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Click me</button>
+        </div>
       </div>
     </div>
     </FadeInSection>
