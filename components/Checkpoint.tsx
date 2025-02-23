@@ -100,7 +100,7 @@ export default function Checkpoint() {
         setSLink("https://direct-link.net/978899/overdrive-h-checkpoint-3")
       } else if (total_checkpoints === 4) {
         const proceedButton = document.getElementById("Proceed")
-        const hardware = Number.parseInt(hexDecode(localstorage.getItem("rt_b") || "0")) || 0
+        const hardware = Number.parseInt(hexDecode(localStorage.getItem("rt_b") || "0")) || 0
         if (checkpoints) checkpoints.textContent = "3"
         const descriptionElement = document.getElementById("description")
         if (proceedButton) proceedButton.innerHTML = '<ChevronRight className="h-6 w-6" /> Create Key';
