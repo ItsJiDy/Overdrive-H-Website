@@ -15,6 +15,7 @@ export default function Checkpoint() {
   const [sLink, setSLink] = useState("")
   const [isCopy, setIsCopy] = useState(false)
   const [sanitizedKey, setSanitizedKey] = useState("")
+  const localstorage = localStorage
 
   const hexEncode = ((str) => [...str].map((c) => c.charCodeAt(0).toString(16) * 2).join(""))
   const hexDecode = (
@@ -31,13 +32,12 @@ export default function Checkpoint() {
     const searchParams = new URLSearchParams(window.location.search)
     const HWID = searchParams.get("HWID")
     const hash = searchParams.get("hash")
-    const localstorage = localStorage
-    let can_create_key
+    let can_create_key = false
 
     window.onCaptchaSuccess = () => {
       setCompletedCaptcha(true)
       const proceedButton = document.getElementById("Proceed")
-      if (can_create_key) {
+      if (!can_create_key) {
         setContinueIcon(true)
         if (proceedButton) proceedButton.textContent = "Continue"
       } else {
