@@ -23,13 +23,14 @@ const Dev = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div
                 key="_"
-                className="bg-gray-800 bg-opacity-50 p-6 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:border-blue-500 border-2 border-transparent justify-center"
+                className="flex bg-gray-800 bg-opacity-50 p-6 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:border-blue-500 border-2 border-transparent justify-center"
               >
                 <Image 
                     id="main_coder_image"
                     alt="MAIN CODER"
-                    width={500} 
-                    height={300} 
+                    width={15} 
+                    height={15} 
+                    style={{ borderRadius: "50px" }}
                   />
                 <h3 className="text-xl font-bold mb-2 text-white" id="main_coder_name"></h3>
                 <p className="text-white">Main Coder</p>
