@@ -42,8 +42,11 @@ export default function Checkpoint() {
     if (HWID && HWID !== "") {
         const rHWID = Number.parseInt(hexDecode(HWID))
         if (rHWID) {
-          localstorage.setItem("rt_b", HWID)
-          special_key = ""
+          if (localStorage.getItem("rt_b") !== HWID) {
+            localStorage.removeItem("sgh_s")
+            localstorage.setItem("rt_b", HWID)
+            special_key = ""
+          }
         } else {
           window.location.href = "/"
           return
@@ -81,7 +84,7 @@ export default function Checkpoint() {
     const checkpoints = document.getElementById("COMPLETED_CHECKPOINTS")
     if (t_key && t_key !== "") {
       const descriptionElement = document.getElementById("description")
-      if (descriptionElement) descriptionElement.textContent = t_key
+      if (descriptionElement) descriptionElement.innerHTML = "Your Key: <b>" + t_key + "</b>"
       const proceedButton = document.getElementById("Proceed")
       if (proceedButton) proceedButton.innerHTML = '<Copy className="h-6 w-6" /> Copy';
       if (checkpoints) checkpoints.textContent = "3"
@@ -144,15 +147,17 @@ export default function Checkpoint() {
       <div className="min-h-screen flex items-center justify-center bg-black/50">
         <div className="max-w-md w-full bg-transparent border-2 rounded-lg transition-all duration-300 ease-in-out scale-90 transform hover:border-blue-500 hover:scale-100 border-2 border-transparent text-white">
           <h1 className="text-2xl font-bold text-center mb-4">Key System</h1>
-          <div className="text-gray-600 mb-6 text-center">
+          <div className="mb-6 text-center">
             <p>
               Completed <b id="COMPLETED_CHECKPOINTS">0</b> of <b>3</b>
               <br />
               Key Duration: <b>30 Hours</b>
             </p>
+            <br />
             <p id="description">
               Click '<b>Continue</b>' in order to proceed to the next checkpoint.
             </p>
+            <br />
           </div>
           <div className="flex justify-center">
             {captcha && (
@@ -162,6 +167,7 @@ export default function Checkpoint() {
               data-callback="onCaptchaSuccess"
             ></div>
           )}
+          <br />
             <button
               className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
               id="Proceed"
