@@ -2,11 +2,9 @@
 
 import Script from "next/script"
 import { useEffect, useState, useCallback } from "react"
-import { ArrowRightFromLine, Copy } from "lucide-react"
+import { ArrowRightFromLine, Copy, Check, ChevronRight } from "lucide-react"
 
 export default function Checkpoint() {
-  const [showIcon, setShowIcon] = useState(false)
-  const [copyIcon, setCopyIcon] = useState(false)
   const [captcha, setCaptchaIcon] = useState(false)
   const [completedCaptcha, setCompletedCaptcha] = useState(false)
   const [keyComplete, setKeyComplete] = useState(false)
@@ -19,7 +17,9 @@ export default function Checkpoint() {
     (hex) =>
       hex
         .match(/.{1,2}/g)
-        .map((byte) => String.fromCharCode(Number.parseInt(byte, 16) / 2))
+        .map((byte) => {
+            return String.fromCharCode(Number.parseInt(byte, 16) / 2)
+         })
         .join(""),
     [],
   )
@@ -32,9 +32,8 @@ export default function Checkpoint() {
 
     window.onCaptchaSuccess = () => {
       setCompletedCaptcha(true)
-      setShowIcon((prev) => !prev)
       const proceedButton = document.getElementById("Proceed")
-      if (proceedButton) proceedButton.textContent = "Continue"
+      if (proceedButton) proceedButton.innerHTML = 'Continue <ArrowRightFromLine className="h-6 w-6" />'
     }
 
     let special_key = localstorage.getItem("d_shg")
@@ -75,18 +74,18 @@ export default function Checkpoint() {
     }
 
     const t_key = localstorage.getItem("sgh_s")
+    const checkpoints = document.getElementById("COMPLETED_CHECKPOINTS")
     if (t_key && t_key !== "") {
       const descriptionElement = document.getElementById("description")
       if (descriptionElement) descriptionElement.textContent = t_key
       const proceedButton = document.getElementById("Proceed")
-      if (proceedButton) proceedButton.textContent = "Copy"
+      if (proceedButton) proceedButton.innerHTML = '<Copy className="h-6 w-6" /> Copy'
+      if (checkpoints) checkpoints.textContent = "3"
       setIsCopy(true)
       setSanitizedKey(t_key)
-      setCopyIcon((prev) => !prev)
     } else {
       const total_checkpoints =
         (Number.parseInt(localstorage.getItem("n_st_e") || "0") || Number(special_key)) / Number(special_key)
-      const checkpoints = document.getElementById("COMPLETED_CHECKPOINTS")
       if (total_checkpoints === 1) {
         setSLink("https://link-hub.net/978899/overdrive-h-key-system")
       } else if (total_checkpoints === 2) {
@@ -96,9 +95,11 @@ export default function Checkpoint() {
         if (checkpoints) checkpoints.textContent = "2"
         setSLink("https://direct-link.net/978899/overdrive-h-checkpoint-3")
       } else if (total_checkpoints === 4) {
+        const proceedButton = document.getElementById("Proceed")
         const hardware = Number.parseInt(hexDecode(localstorage.getItem("rt_b") || "0")) || 0
         if (checkpoints) checkpoints.textContent = "3"
         const descriptionElement = document.getElementById("description")
+        if (proceedButton) proceedButton.innerHTML = '<ChevronRight className="h-6 w-6" /> Create Key'
         if (descriptionElement) descriptionElement.innerHTML = "Click '<p>Create Key</p>' to create your key."
         setKeyComplete(true)
         setSanitizedKey(hexEncode(hardware.toString() + "_" + (Math.floor(Date.now() / 1000) + 108000).toString()))
@@ -111,9 +112,9 @@ export default function Checkpoint() {
     if (isCopy) {
       navigator.clipboard.writeText(sanitizedKey)
       const proceedButton = document.getElementById("Proceed")
-      if (proceedButton) proceedButton.textContent = "Copied to Clipboard!"
+      if (proceedButton) proceedButton.textContent = "<Check className="h-6 w-6" /> Copied to Clipboard!"
       setTimeout(() => {
-        if (proceedButton) proceedButton.textContent = "Copy"
+        if (proceedButton) proceedButton.innerHTML = '<Copy className="h-6 w-6" /> Copy'
       }, 1000)
     } else {
       if (completedCaptcha) {
@@ -137,7 +138,7 @@ export default function Checkpoint() {
       <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></Script>
 
       <div className="min-h-screen flex items-center justify-center bg-black/50">
-        <div className="max-w-md w-full bg-transparent border-2 rounded-lg transition-colors scale-90 transform hover:border-blue-500 hover:scale-100 border-2 border-transparent">
+        <div className="max-w-md w-full bg-transparent border-2 rounded-lg transition-all duration-300 ease-in-out scale-90 transform hover:border-blue-500 hover:scale-100 border-2 border-transparent text-white">
           <h1 className="text-2xl font-bold text-center mb-4">Key System</h1>
           <div className="text-gray-600 mb-6 text-center">
             <p>
@@ -149,22 +150,20 @@ export default function Checkpoint() {
               Click '<b>Continue</b>' in order to proceed to the next checkpoint.
             </p>
           </div>
-          {captcha && (
+          <div className="flex justify-center">
+            {captcha && (
             <div
               className="cf-turnstile"
               data-sitekey="0x4AAAAAAA9l-KYvvzkYwsM8"
               data-callback="onCaptchaSuccess"
             ></div>
           )}
-          <div className="flex justify-center">
             <button
               className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
               id="Proceed"
               onClick={handleProceedClick}
             >
               Please complete the captcha first!
-              {showIcon && <ArrowRightFromLine className="h-6 w-6" />}
-              {copyIcon && <Copy />}
             </button>
           </div>
         </div>
