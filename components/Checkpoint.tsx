@@ -8,8 +8,6 @@ import { useSearchParams } from 'next/navigation'
 
 export default function Checkpoint() {
   const searchParams = useSearchParams()
-  const HWID = searchParams.get('HWID')
-  const hash = searchParams.get('hash')
   const [showIcon, setShowIcon] = useState(false)
   const [copyIcon, setCopyIcon] = useState(false)
   const [captcha, setCaptchaIcon] = useState(false)
@@ -22,7 +20,8 @@ export default function Checkpoint() {
   useEffect(() => {
       const hexEncode = (str) => [...str].map(c => c.charCodeAt(0).toString(16) * 2).join('');
       const hexDecode = (hex) => hex.match(/.{1,2}/g).map(byte => String.fromCharCode(parseInt(byte, 16) / 2)).join('');
-
+      const HWID = searchParams.get('HWID')
+      const hash = searchParams.get('hash')
       window.onCaptchaSuccess = () => {
           completedCaptcha = true
           document.getElementById("Proceed").textContent = "Continue"
@@ -88,7 +87,7 @@ export default function Checkpoint() {
           }
           setCaptchaIcon(!captcha)
       }
-  }, [])
+  }, [searchParams])
 
   return (
     <>
