@@ -18,7 +18,12 @@ const TermsOfService = () => {
 
         <section className="mb-6">
           <h2 className="text-2xl font-semibold mb-3">Is Overdrive H logging users?</h2>
-          <p>No, but Luarmor logs every user's information such as Username, Executor Name, and Job Id (that's all).</p>
+          <p>No, we do not log users.</p>
+        </section>
+
+        <section className="mb-6">
+          <h2 className="text-2xl font-semibold mb-3">Can we still get a refund from the Premium/Exclusive gamepass?</h2>
+          <p>No, we don't do a refund.</p>
         </section>
 
         <section className="mb-6">
@@ -31,7 +36,7 @@ const TermsOfService = () => {
         <section className="mb-6">
           <h2 className="text-2xl font-semibold mb-3">User's Liability</h2>
           <p>
-            By obtaining and using Overdrive from any source, you agree that you are responsible for any damages, costs,
+            By using Overdrive H, you agree that you are responsible for any damages, costs,
             or legal issues that arise from your actions or from any misuse of the Software.
           </p>
         </section>
