@@ -28,8 +28,8 @@ const Dev = () => {
                 <Image 
                     id="main_coder_image"
                     alt="MAIN CODER"
-                    width={15} 
-                    height={15} 
+                    width={75} 
+                    height={75} 
                     style={{ borderRadius: "50px" }}
                   />
                 <h3 className="text-xl font-bold mb-2 text-white" id="main_coder_name"></h3>
