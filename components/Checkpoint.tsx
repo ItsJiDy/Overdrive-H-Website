@@ -15,7 +15,6 @@ export default function Checkpoint() {
   const [sLink, setSLink] = useState("")
   const [isCopy, setIsCopy] = useState(false)
   const [sanitizedKey, setSanitizedKey] = useState("")
-  const localstorage = localStorage
 
   const hexEncode = ((str) => [...str].map((c) => c.charCodeAt(0).toString(16) * 2).join(""))
   const hexDecode = (
@@ -32,6 +31,7 @@ export default function Checkpoint() {
     const searchParams = new URLSearchParams(window.location.search)
     const HWID = searchParams.get("HWID")
     const hash = searchParams.get("hash")
+    const localstorage = localStorage
     let can_create_key = false
 
     window.onCaptchaSuccess = () => {
@@ -126,6 +126,7 @@ export default function Checkpoint() {
   }, [hexDecode, hexEncode])
 
   const handleProceedClick = useCallback(() => {
+    const localstorage = localStorage
     if (isCopy) {
       navigator.clipboard.writeText(sanitizedKey)
       const proceedButton = document.getElementById("Proceed")
