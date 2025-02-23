@@ -121,7 +121,7 @@ export default function Checkpoint() {
         can_create_key = true
         setSanitizedKey(hexEncode(hardware.toString() + "_" + (Math.floor(Date.now() / 1000) + 108000).toString()))
       }
-      setCaptchaIcon((prev) => !prev)
+      setCaptchaIcon(true)
     }
   }, [hexDecode, hexEncode])
 
@@ -161,6 +161,7 @@ export default function Checkpoint() {
 
       <div className="min-h-screen flex items-center justify-center bg-black/50">
         <div className="max-w-md w-full bg-transparent border-2 rounded-lg transition-all duration-300 ease-in-out scale-90 transform hover:border-blue-500 hover:scale-100 border-2 border-transparent text-white">
+          <br />
           <h1 className="text-2xl font-bold text-center mb-4">Key System</h1>
           <div className="mb-6 text-center">
             <p>
@@ -197,6 +198,7 @@ export default function Checkpoint() {
               {continueIcon && <ArrowRightFromLine className="h-6 w-6" />}
             </button>
           </div>
+          <br />
         </div>
       </div>
     </>
