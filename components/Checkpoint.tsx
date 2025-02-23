@@ -4,11 +4,12 @@ import Script from 'next/script';
 import { FadeInSection } from "@/utils/fadeInSection"
 import { useEffect, useState } from "react";
 import { ArrowRightFromLine, Copy } from "lucide-react"
-import { useRouter } from "next/router";
+import { useSearchParams } from 'next/navigation'
 
 export default function Checkpoint() {
-  const router = useRouter();
-  const { HWID, hash } = router.query;
+  const searchParams = useSearchParams()
+  const HWID = searchParams.get('HWID')
+  const hash = searchParams.get('hash')
   const [showIcon, setShowIcon] = useState(false)
   const [copyIcon, setCopyIcon] = useState(false)
   const [captcha, setCaptchaIcon] = useState(false)
@@ -102,6 +103,9 @@ export default function Checkpoint() {
         <h1 className="text-2xl font-bold text-center mb-4">Key System</h1>
         <p className="text-gray-600 mb-6 text-center">
           Completed <b id="COMPLETED_CHECKPOINTS">0</b> of <b>3</b>
+          <br></br>
+          Key Duration: <b>30 Hours</b>
+          <br></br>
           <p id="description">Click '<b>Continue</b>' in order to proceed to the next checkpoint.</p>
         </p>
         {captcha && <div
