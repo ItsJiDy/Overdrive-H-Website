@@ -18,7 +18,7 @@ const Dev = () => {
   return (
     <FadeInSection>
       <section className="py-16 px-4">
-        <div className="container mx-auto">
+        <div className="container mx-auto items-center text-center">
           <h2 className="text-3xl font-bold mb-8 text-center text-white">Developer</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div
@@ -28,8 +28,8 @@ const Dev = () => {
                 <Image 
                     id="main_coder_image"
                     alt="MAIN CODER"
-                    width={75} 
-                    height={75} 
+                    width={45} 
+                    height={45} 
                     style={{ borderRadius: "50px" }}
                   />
                 <h3 className="text-xl font-bold mb-2 text-white" id="main_coder_name"></h3>
