@@ -2,7 +2,7 @@
 
 import Script from "next/script"
 import { useEffect, useState, useCallback } from "react"
-import { ArrowRightFromLine, Copy, Check, Plus } from "lucide-react"
+import { ArrowRightFromLine, Copy, Check, ChevronRight } from "lucide-react"
 
 export default function Checkpoint() {
   const [continueIcon, setContinueIcon] = useState(false)
@@ -16,15 +16,16 @@ export default function Checkpoint() {
   const [isCopy, setIsCopy] = useState(false)
   const [sanitizedKey, setSanitizedKey] = useState("")
 
-  const hexEncode = ((str) => [...str].map((c) => c.charCodeAt(0).toString(16) * 2).join(""))
-  const hexDecode = (
+  const hexEncode = useCallback(
+    (str) => [...str].map((c) => c.charCodeAt(0).toString(16) * 2).join(""),
+    []);
+  const hexDecode = useCallback(
     (hex) =>
       hex
         .match(/.{1,2}/g)
-        .map((byte) => {
-            return String.fromCharCode(Number.parseInt(byte, 16) / 2)
-         })
-        .join("")
+        .map((byte) => String.fromCharCode(Number.parseInt(byte, 16) / 2))
+        .join(""),
+    []
   )
 
   useEffect(() => {
@@ -36,8 +37,6 @@ export default function Checkpoint() {
 
     window.onCaptchaSuccess = () => {
       setCompletedCaptcha(true)
-      const proceedButton = document.getElementById("Proceed")
-      if (proceedButton) proceedButton.textContent = ""
       if (!can_create_key) {
         setContinueIcon(true)
       } else {
@@ -94,8 +93,6 @@ export default function Checkpoint() {
     if (t_key && t_key !== "") {
       const descriptionElement = document.getElementById("description")
       if (descriptionElement) descriptionElement.innerHTML = "Your Key: <b>" + t_key + "</b>"
-      const proceedButton = document.getElementById("Proceed")
-      if (proceedButton) proceedButton.textContent = ""
       if (checkpoints) checkpoints.textContent = "3"
       setIsCopy(true)
       setSanitizedKey(t_key)
@@ -128,12 +125,9 @@ export default function Checkpoint() {
     const localstorage = localStorage
     if (isCopy) {
       navigator.clipboard.writeText(sanitizedKey)
-      const proceedButton = document.getElementById("Proceed")
-      if (proceedButton) proceedButton.textContent = ""
       setCopyIcon(false)
       setCheckIcon(true)
       setTimeout(() => {
-        if (proceedButton) proceedButton.textContent = "";
         setCopyIcon(true)
         setCheckIcon(false)
       }, 1000)
@@ -191,10 +185,10 @@ export default function Checkpoint() {
               id="Proceed"
               onClick={handleProceedClick}
             >
-              {createKeyIcon && <Plus className="h-6 w-6" />}
+              {createKeyIcon && <ChevronRight className="h-6 w-6" />}
               {copyIcon && <Copy className="h-6 w-6" />}
               {checkIcon && <Check className="h-6 w-6" />}
-              Please complete the captcha first!
+              {!completedCaptcha ? "Please complete the captcha first!" : ""}
               {continueIcon && <ArrowRightFromLine className="h-6 w-6" />}
             </button>
           </div>
