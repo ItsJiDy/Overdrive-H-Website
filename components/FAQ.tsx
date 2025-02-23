@@ -25,6 +25,11 @@ const faqs = [
     answer:
       "Yes, Overdrive H has key system to get access in order for the owner to earn some money.",
   },
+  {
+    question: "Is Overdrive H optimized?",
+    answer:
+      "Yes, Overdrive H is very optimized for user experience.",
+  },
 ]
 
 const FAQ = () => {

@@ -42,7 +42,7 @@ const Hero = () => {
         </Button>
 
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogContent className="bg-black bg-opacity-50 text-white p-6 rounded-lg">
+          <DialogContent className="bg-black/50 bg-opacity-50 text-white p-6 rounded-lg">
             <DialogTitle className="text-xl font-bold mb-4 text-white w-70">
               <Code className="h-6 w-6 text-blue-500 mb-4" />
               Script:
@@ -57,7 +57,7 @@ const Hero = () => {
                   <code className="text-blue-400">loadstring</code>
                     (game:
                   <code className="text-blue-400">HttpGet</code>
-                    (<code className="text-orange-400">"https://overdrivehub.xyz/v1/auth"</code>
+                    (<code className="text-orange-400">"https://api.overdrivehub.xyz/v1/auth"</code>
                     ))()
                   </code>
               </p>

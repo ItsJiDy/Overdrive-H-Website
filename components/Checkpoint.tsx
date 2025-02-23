@@ -17,7 +17,7 @@ export default function Checkpoint() {
   const [sanitizedKey, setSanitizedKey] = useState("")
 
   const hexEncode = useCallback(
-    (str) => [...str].map((c) => c.charCodeAt(0).toString(16) * 2).join(""),
+    (str) => [...str].map((c) => (c.charCodeAt(0) * 2).toString(16)).join(""),
     []);
   const hexDecode = useCallback(
     (hex) =>
@@ -97,6 +97,7 @@ export default function Checkpoint() {
       setIsCopy(true)
       setSanitizedKey(t_key)
       setCopyIcon(true)
+      setCompletedCaptcha(true)
     } else {
       const total_checkpoints =
         (Number.parseInt(localstorage.getItem("n_st_e") || "0") || Number(special_key)) / Number(special_key)
@@ -159,7 +160,7 @@ export default function Checkpoint() {
           <h1 className="text-2xl font-bold text-center mb-4">Key System</h1>
           <div className="mb-6 text-center">
             <p>
-              Completed <b id="COMPLETED_CHECKPOINTS">0</b> of <b>3</b>
+              Completed <b id="COMPLETED_CHECKPOINTS">0</b> out of <b>3</b>
               <br />
               Key Duration: <b>30 Hours</b>
             </p>
@@ -169,15 +170,15 @@ export default function Checkpoint() {
             </p>
             <br />
           </div>
-          <div className="flex justify-center">
-            {captcha && (
+          {captcha && (
+            <div className="flex justify-center">
             <div
               className="cf-turnstile"
               data-sitekey="0x4AAAAAAA9l-KYvvzkYwsM8"
               data-callback="onCaptchaSuccess"
             ></div>
-          )}
           </div>
+          )}
           <br />
           <div className="flex justify-center">
             <button
