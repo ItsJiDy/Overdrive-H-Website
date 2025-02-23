@@ -33,25 +33,29 @@ export default function Checkpoint() {
     window.onCaptchaSuccess = () => {
       setCompletedCaptcha(true)
       const proceedButton = document.getElementById("Proceed")
-      if (proceedButton) proceedButton.innerHTML = 'Continue <ArrowRightFromLine className="h-6 w-6" />'
+      if (proceedButton) proceedButton.innerHTML = 'Continue <ArrowRightFromLine className="h-6 w-6" />';
     }
 
     let special_key = localstorage.getItem("d_shg")
     let revoked = false
 
-    if (!special_key || special_key === "") {
-      if (HWID) {
-        special_key = Number.parseInt(Math.random() * 999999).toString()
-        localstorage.setItem("d_shg", special_key)
-        localstorage.setItem("n_st_e", (1 * Number(special_key)).toString())
-        revoked = true
+    if (HWID && HWID !== "") {
         const rHWID = Number.parseInt(hexDecode(HWID))
         if (rHWID) {
           localstorage.setItem("rt_b", HWID)
+          special_key = ""
         } else {
           window.location.href = "/"
           return
         }
+    }
+
+    if (!special_key || special_key === "") {
+      if (HWID && HWID !== "") {
+        special_key = Number.parseInt(Math.random() * 999999).toString()
+        localstorage.setItem("d_shg", special_key)
+        localstorage.setItem("n_st_e", (1 * Number(special_key)).toString())
+        revoked = true
       } else {
         window.location.href = "/"
         return
@@ -79,7 +83,7 @@ export default function Checkpoint() {
       const descriptionElement = document.getElementById("description")
       if (descriptionElement) descriptionElement.textContent = t_key
       const proceedButton = document.getElementById("Proceed")
-      if (proceedButton) proceedButton.innerHTML = '<Copy className="h-6 w-6" /> Copy'
+      if (proceedButton) proceedButton.innerHTML = '<Copy className="h-6 w-6" /> Copy';
       if (checkpoints) checkpoints.textContent = "3"
       setIsCopy(true)
       setSanitizedKey(t_key)
@@ -99,8 +103,8 @@ export default function Checkpoint() {
         const hardware = Number.parseInt(hexDecode(localstorage.getItem("rt_b") || "0")) || 0
         if (checkpoints) checkpoints.textContent = "3"
         const descriptionElement = document.getElementById("description")
-        if (proceedButton) proceedButton.innerHTML = '<ChevronRight className="h-6 w-6" /> Create Key'
-        if (descriptionElement) descriptionElement.innerHTML = "Click '<p>Create Key</p>' to create your key."
+        if (proceedButton) proceedButton.innerHTML = '<ChevronRight className="h-6 w-6" /> Create Key';
+        if (descriptionElement) descriptionElement.innerHTML = "Click '<p>Create Key</p>' to create your key.";
         setKeyComplete(true)
         setSanitizedKey(hexEncode(hardware.toString() + "_" + (Math.floor(Date.now() / 1000) + 108000).toString()))
       }
@@ -112,15 +116,15 @@ export default function Checkpoint() {
     if (isCopy) {
       navigator.clipboard.writeText(sanitizedKey)
       const proceedButton = document.getElementById("Proceed")
-      if (proceedButton) proceedButton.textContent = "<Check className="h-6 w-6" /> Copied to Clipboard!"
+      if (proceedButton) proceedButton.textContent = '<Check className="h-6 w-6" /> Copied to Clipboard!';
       setTimeout(() => {
-        if (proceedButton) proceedButton.innerHTML = '<Copy className="h-6 w-6" /> Copy'
+        if (proceedButton) proceedButton.innerHTML = '<Copy className="h-6 w-6" /> Copy';
       }, 1000)
     } else {
       if (completedCaptcha) {
         if (keyComplete) {
           const descriptionElement = document.getElementById("description")
-          if (descriptionElement) descriptionElement.textContent = "..."
+          if (descriptionElement) descriptionElement.textContent = "...";
           setTimeout(() => {
             localStorage.setItem("sgh_s", sanitizedKey)
             localStorage.removeItem("n_st_e")
