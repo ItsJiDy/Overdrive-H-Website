@@ -1,4 +1,4 @@
-import { Zap, Palette, Sliders, Flag, Key, Layout } from "lucide-react"
+import { Zap, Palette, Sliders, Flag, Key, Layout, MessageCircleMore } from "lucide-react"
 import { FadeInSection } from "@/utils/fadeInSection"
 
 const features = [
@@ -31,6 +31,11 @@ const features = [
     icon: <Layout className="h-6 w-6" />,
     title: "Modern Interface",
     description: "Fresh and Clean Interface for user experience.",
+  },
+  {
+    icon: <MessageCircleMore className="h-6 w-6" />,
+    title: "Global Chat",
+    description: "Chat with anyone who uses the script in the Chat Tab across the servers.",
   },
 ]
 

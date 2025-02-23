@@ -113,7 +113,7 @@ export default function Checkpoint() {
         const hardware = Number.parseInt(hexDecode(localstorage.getItem("rt_b") || "0")) || 0
         if (checkpoints) checkpoints.textContent = "3"
         const descriptionElement = document.getElementById("description")
-        if (descriptionElement) descriptionElement.innerHTML = "Click the <b>chevron</b> icon to create your key.";
+        if (descriptionElement) descriptionElement.innerHTML = "Click the <b>Chevron</b> icon to create your key.";
         setKeyComplete(true)
         can_create_key = true
         setSanitizedKey(hexEncode(hardware.toString() + "_" + (Math.floor(Date.now() / 1000) + 108000).toString()))
@@ -166,7 +166,7 @@ export default function Checkpoint() {
             </p>
             <br />
             <p id="description">
-              Click the <b>continue</b> icon in order to proceed to the next checkpoint.
+              Click the <b>Continue</b> icon in order to proceed to the next checkpoint.
             </p>
             <br />
           </div>
@@ -179,7 +179,6 @@ export default function Checkpoint() {
             ></div>
           </div>
           )}
-          <br />
           <div className="flex justify-center">
             <button
               className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all duration-300 ease-in-out transform hover:scale-105"
