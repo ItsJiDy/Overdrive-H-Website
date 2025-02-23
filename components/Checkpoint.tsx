@@ -16,16 +16,15 @@ export default function Checkpoint() {
   const [isCopy, setIsCopy] = useState(false)
   const [sanitizedKey, setSanitizedKey] = useState("")
 
-  const hexEncode = useCallback((str) => [...str].map((c) => c.charCodeAt(0).toString(16) * 2).join(""), [])
-  const hexDecode = useCallback(
+  const hexEncode = ((str) => [...str].map((c) => c.charCodeAt(0).toString(16) * 2).join(""))
+  const hexDecode = (
     (hex) =>
       hex
         .match(/.{1,2}/g)
         .map((byte) => {
             return String.fromCharCode(Number.parseInt(byte, 16) / 2)
          })
-        .join(""),
-    [],
+        .join("")
   )
 
   useEffect(() => {
@@ -33,12 +32,18 @@ export default function Checkpoint() {
     const HWID = searchParams.get("HWID")
     const hash = searchParams.get("hash")
     const localstorage = localStorage
+    let can_create_key
 
     window.onCaptchaSuccess = () => {
       setCompletedCaptcha(true)
-      setContinueIcon(true)
       const proceedButton = document.getElementById("Proceed")
-      if (proceedButton) proceedButton.textContent = "Continue"
+      if (can_create_key) {
+        setContinueIcon(true)
+        if (proceedButton) proceedButton.textContent = "Continue"
+      } else {
+        setCreateKeyIcon(true)
+        if (proceedButton) proceedButton.textContent = "Create Key"
+      }
     }
 
     let special_key = localstorage.getItem("d_shg")
@@ -47,8 +52,8 @@ export default function Checkpoint() {
     if (HWID && HWID !== "") {
         const rHWID = Number.parseInt(hexDecode(HWID))
         if (rHWID) {
-          if (localStorage.getItem("rt_b") !== HWID) {
-            localStorage.removeItem("sgh_s")
+          if (localstorage.getItem("rt_b") !== HWID) {
+            localstorage.removeItem("sgh_s")
             localstorage.setItem("rt_b", HWID)
             special_key = ""
           }
@@ -108,14 +113,12 @@ export default function Checkpoint() {
         if (checkpoints) checkpoints.textContent = "2"
         setSLink("https://direct-link.net/978899/overdrive-h-checkpoint-3")
       } else if (total_checkpoints === 4) {
-        const proceedButton = document.getElementById("Proceed")
-        const hardware = Number.parseInt(hexDecode(localStorage.getItem("rt_b") || "0")) || 0
+        const hardware = Number.parseInt(hexDecode(localstorage.getItem("rt_b") || "0")) || 0
         if (checkpoints) checkpoints.textContent = "3"
         const descriptionElement = document.getElementById("description")
-        if (proceedButton) proceedButton.textContent = "Create Key"
-        if (descriptionElement) descriptionElement.innerHTML = "Click '<p>Create Key</p>' to create your key.";
+        if (descriptionElement) descriptionElement.innerHTML = "Click '<b>Create Key</b>' to create your key.";
         setKeyComplete(true)
-        setCreateKeyIcon(true)
+        can_create_key = true
         setSanitizedKey(hexEncode(hardware.toString() + "_" + (Math.floor(Date.now() / 1000) + 108000).toString()))
       }
       setCaptchaIcon((prev) => !prev)
@@ -141,8 +144,8 @@ export default function Checkpoint() {
           if (descriptionElement) descriptionElement.textContent = "...";
           setCreateKeyIcon(false)
           setTimeout(() => {
-            localStorage.setItem("sgh_s", sanitizedKey)
-            localStorage.removeItem("n_st_e")
+            localstorage.setItem("sgh_s", sanitizedKey)
+            localstorage.removeItem("n_st_e")
             window.location.reload()
           }, 1500)
         } else {
@@ -183,7 +186,7 @@ export default function Checkpoint() {
           <br />
           <div className="flex justify-center">
             <button
-              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all duration-300 ease-in-out transform hover:scale-105"
               id="Proceed"
               onClick={handleProceedClick}
             >
