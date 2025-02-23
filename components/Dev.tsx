@@ -1,3 +1,5 @@
+"use client";
+
 import { FadeInSection } from "@/utils/fadeInSection"
 import Image from 'next/image';
 import { useEffect } from "react"
