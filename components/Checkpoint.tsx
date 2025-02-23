@@ -5,6 +5,10 @@ import { useEffect, useState, useCallback } from "react"
 import { ArrowRightFromLine, Copy, Check, ChevronRight } from "lucide-react"
 
 export default function Checkpoint() {
+  const [continueIcon, setContinueIcon] = useState(false)
+  const [copyIcon, setCopyIcon] = useState(false)
+  const [createKeyIcon, setCreateKeyIcon] = useState(false)
+  const [checkIcon, setCheckIcon] = useState(false)
   const [captcha, setCaptchaIcon] = useState(false)
   const [completedCaptcha, setCompletedCaptcha] = useState(false)
   const [keyComplete, setKeyComplete] = useState(false)
@@ -32,8 +36,9 @@ export default function Checkpoint() {
 
     window.onCaptchaSuccess = () => {
       setCompletedCaptcha(true)
+      setContinueIcon(true)
       const proceedButton = document.getElementById("Proceed")
-      if (proceedButton) proceedButton.innerHTML = 'Continue <ArrowRightFromLine className="h-6 w-6" />';
+      if (proceedButton) proceedButton.textContent = "Continue"
     }
 
     let special_key = localstorage.getItem("d_shg")
@@ -86,10 +91,11 @@ export default function Checkpoint() {
       const descriptionElement = document.getElementById("description")
       if (descriptionElement) descriptionElement.innerHTML = "Your Key: <b>" + t_key + "</b>"
       const proceedButton = document.getElementById("Proceed")
-      if (proceedButton) proceedButton.innerHTML = '<Copy className="h-6 w-6" /> Copy';
+      if (proceedButton) proceedButton.textContent = "Copy";
       if (checkpoints) checkpoints.textContent = "3"
       setIsCopy(true)
       setSanitizedKey(t_key)
+      setCopyIcon(true)
     } else {
       const total_checkpoints =
         (Number.parseInt(localstorage.getItem("n_st_e") || "0") || Number(special_key)) / Number(special_key)
@@ -106,9 +112,10 @@ export default function Checkpoint() {
         const hardware = Number.parseInt(hexDecode(localStorage.getItem("rt_b") || "0")) || 0
         if (checkpoints) checkpoints.textContent = "3"
         const descriptionElement = document.getElementById("description")
-        if (proceedButton) proceedButton.innerHTML = '<ChevronRight className="h-6 w-6" /> Create Key';
+        if (proceedButton) proceedButton.textContent = "Create Key"
         if (descriptionElement) descriptionElement.innerHTML = "Click '<p>Create Key</p>' to create your key.";
         setKeyComplete(true)
+        setCreateKeyIcon(true)
         setSanitizedKey(hexEncode(hardware.toString() + "_" + (Math.floor(Date.now() / 1000) + 108000).toString()))
       }
       setCaptchaIcon((prev) => !prev)
@@ -119,15 +126,20 @@ export default function Checkpoint() {
     if (isCopy) {
       navigator.clipboard.writeText(sanitizedKey)
       const proceedButton = document.getElementById("Proceed")
-      if (proceedButton) proceedButton.textContent = '<Check className="h-6 w-6" /> Copied to Clipboard!';
+      if (proceedButton) proceedButton.textContent = "Copied to Clipboard!";
+      setCopyIcon(false)
+      setCheckIcon(true)
       setTimeout(() => {
-        if (proceedButton) proceedButton.innerHTML = '<Copy className="h-6 w-6" /> Copy';
+        if (proceedButton) proceedButton.textContent = "Copy";
+        setCopyIcon(true)
+        setCheckIcon(false)
       }, 1000)
     } else {
       if (completedCaptcha) {
         if (keyComplete) {
           const descriptionElement = document.getElementById("description")
           if (descriptionElement) descriptionElement.textContent = "...";
+          setCreateKeyIcon(false)
           setTimeout(() => {
             localStorage.setItem("sgh_s", sanitizedKey)
             localStorage.removeItem("n_st_e")
@@ -167,13 +179,19 @@ export default function Checkpoint() {
               data-callback="onCaptchaSuccess"
             ></div>
           )}
+          </div>
           <br />
+          <div className="flex justify-center">
             <button
               className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
               id="Proceed"
               onClick={handleProceedClick}
             >
+              {createKeyIcon && <ChevronRight className="h-6 w-6" />}
+              {copyIcon && <Copy className="h-6 w-6" />}
+              {checkIcon && <Check className="h-6 w-6" />}
               Please complete the captcha first!
+              {continueIcon && <ArrowRightFromLine className="h-6 w-6" />}
             </button>
           </div>
         </div>
