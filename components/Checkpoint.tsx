@@ -2,7 +2,7 @@
 
 import Script from "next/script"
 import { useEffect, useState, useCallback } from "react"
-import { ArrowRightFromLine, Copy, Check, ChevronRight } from "lucide-react"
+import { ArrowRightFromLine, Copy, Check, Plus } from "lucide-react"
 
 export default function Checkpoint() {
   const [continueIcon, setContinueIcon] = useState(false)
@@ -37,12 +37,11 @@ export default function Checkpoint() {
     window.onCaptchaSuccess = () => {
       setCompletedCaptcha(true)
       const proceedButton = document.getElementById("Proceed")
+      if (proceedButton) proceedButton.textContent = ""
       if (!can_create_key) {
         setContinueIcon(true)
-        if (proceedButton) proceedButton.textContent = "Continue"
       } else {
         setCreateKeyIcon(true)
-        if (proceedButton) proceedButton.textContent = "Create Key"
       }
     }
 
@@ -96,7 +95,7 @@ export default function Checkpoint() {
       const descriptionElement = document.getElementById("description")
       if (descriptionElement) descriptionElement.innerHTML = "Your Key: <b>" + t_key + "</b>"
       const proceedButton = document.getElementById("Proceed")
-      if (proceedButton) proceedButton.textContent = "Copy";
+      if (proceedButton) proceedButton.textContent = ""
       if (checkpoints) checkpoints.textContent = "3"
       setIsCopy(true)
       setSanitizedKey(t_key)
@@ -130,11 +129,11 @@ export default function Checkpoint() {
     if (isCopy) {
       navigator.clipboard.writeText(sanitizedKey)
       const proceedButton = document.getElementById("Proceed")
-      if (proceedButton) proceedButton.textContent = "Copied to Clipboard!";
+      if (proceedButton) proceedButton.textContent = ""
       setCopyIcon(false)
       setCheckIcon(true)
       setTimeout(() => {
-        if (proceedButton) proceedButton.textContent = "Copy";
+        if (proceedButton) proceedButton.textContent = "";
         setCopyIcon(true)
         setCheckIcon(false)
       }, 1000)
@@ -192,7 +191,7 @@ export default function Checkpoint() {
               id="Proceed"
               onClick={handleProceedClick}
             >
-              {createKeyIcon && <ChevronRight className="h-6 w-6" />}
+              {createKeyIcon && <Plus className="h-6 w-6" />}
               {copyIcon && <Copy className="h-6 w-6" />}
               {checkIcon && <Check className="h-6 w-6" />}
               Please complete the captcha first!
