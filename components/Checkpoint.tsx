@@ -220,7 +220,7 @@ export default function Checkpoint() {
               <>
                 <br />
                 <p className="text-red-600">
-                  Seems like you just bypassed but it didn't worked, don't do that again.
+                  Seems like you just bypassed the checkpoint, don't do that again.
                 </p>
               </>
             )}
