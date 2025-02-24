@@ -10,7 +10,6 @@ export default function Checkpoint() {
   const [createKeyIcon, setCreateKeyIcon] = useState(false)
   const [checkIcon, setCheckIcon] = useState(false)
   const [captcha, setCaptchaIcon] = useState(false)
-  const [completedCaptcha, setCompletedCaptcha] = useState(false)
   const [keyComplete, setKeyComplete] = useState(false)
   const [sLink, setSLink] = useState("")
   const [isCopy, setIsCopy] = useState(false)
@@ -34,12 +33,17 @@ export default function Checkpoint() {
     const hash = searchParams.get("hash")
     const localstorage = localStorage
     let can_create_key = false
+    let completedCaptcha = false
 
     window.onCaptchaSuccess = () => {
-      setCompletedCaptcha(true)
       if (!can_create_key) {
+        completedCaptcha = true
         setContinueIcon(true)
+        const proceedTextElement = document.getElementById("Proceed-Text")
+        if (proceedTextElement) proceedTextElement.textContent = "Continue"
       } else {
+        const proceedTextElement = document.getElementById("Proceed-Text")
+        if (proceedTextElement) proceedTextElement.textContent = "Create Key"
         setCreateKeyIcon(true)
       }
     }
@@ -97,7 +101,8 @@ export default function Checkpoint() {
       setIsCopy(true)
       setSanitizedKey(t_key)
       setCopyIcon(true)
-      setCompletedCaptcha(true)
+      const proceedTextElement = document.getElementById("Proceed-Text")
+      if (proceedTextElement) proceedTextElement.textContent = "Copy"
     } else {
       const total_checkpoints =
         (Number.parseInt(localstorage.getItem("n_st_e") || "0") || Number(special_key)) / Number(special_key)
@@ -113,8 +118,7 @@ export default function Checkpoint() {
         const hardware = Number.parseInt(hexDecode(localstorage.getItem("rt_b") || "0")) || 0
         if (checkpoints) checkpoints.textContent = "3"
         const descriptionElement = document.getElementById("description")
-        if (descriptionElement) descriptionElement.innerHTML = "Click the <b>Chevron</b> icon to create your key.";
-        setKeyComplete(true)
+        if (descriptionElement) descriptionElement.innerHTML = "Click '<b>Create Key</b>' to create your key.";
         can_create_key = true
         setSanitizedKey(hexEncode(hardware.toString() + "_" + (Math.floor(Date.now() / 1000) + 108000).toString()))
       }
@@ -148,7 +152,7 @@ export default function Checkpoint() {
         }
       }
     }
-  }, [isCopy, sanitizedKey, completedCaptcha, keyComplete, sLink])
+  }, [isCopy, sanitizedKey, keyComplete, sLink])
 
   return (
     <>
@@ -166,7 +170,7 @@ export default function Checkpoint() {
             </p>
             <br />
             <p id="description">
-              Click the <b>Continue</b> icon in order to proceed to the next checkpoint.
+              Click '<b>Continue</b>' in order to proceed to the next checkpoint.
             </p>
             <br />
           </div>
@@ -185,11 +189,15 @@ export default function Checkpoint() {
               id="Proceed"
               onClick={handleProceedClick}
             >
-              {createKeyIcon && <ChevronRight className="h-6 w-6" />}
-              {copyIcon && <Copy className="h-6 w-6" />}
-              {checkIcon && <Check className="h-6 w-6" />}
-              {!completedCaptcha ? "Please complete the captcha first!" : ""}
-              {continueIcon && <ArrowRightFromLine className="h-6 w-6" />}
+              {}
+              <span className="flex items-center space-x-2">
+                {createKeyIcon && <ChevronRight className="h-6 w-6" />}
+                {copyIcon && <Copy className="h-6 w-6" />}
+                {checkIcon && <Check className="h-6 w-6" />}
+                <p id="Proceed-Text">Please complete the captcha first!</p>
+              </span>
+              {}
+              {continueIcon && <ArrowRightFromLine className="h-6 w-6 ml-auto" />}
             </button>
           </div>
           <br />
