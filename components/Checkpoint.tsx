@@ -211,15 +211,15 @@ export default function Checkpoint() {
               </span>
             </button>
           </div>
+          <br />
           <div className="mb-6 text-center">
             <p>
               Thank you for using <b>Overdrive H</b>
             </p>
-            {isBypassed && <p className="text-red-600">
-              Seems like you just bypassed but didn't worked :)
+            {isBypassed && <br /> <p className="text-red-600">
+              Seems like you just bypassed but it didn't worked, don't do that again.
             </p>}
           </div>
-          <br />
         </div>
       </div>
     </>
