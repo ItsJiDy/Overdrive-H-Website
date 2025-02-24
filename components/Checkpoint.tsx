@@ -10,11 +10,11 @@ export default function Checkpoint() {
   const [createKeyIcon, setCreateKeyIcon] = useState(false)
   const [checkIcon, setCheckIcon] = useState(false)
   const [captcha, setCaptchaIcon] = useState(false)
+  const [completedCaptcha, setCompletedCaptcha] = useState(false)
   const [keyComplete, setKeyComplete] = useState(false)
   const [sLink, setSLink] = useState("")
   const [isCopy, setIsCopy] = useState(false)
   const [sanitizedKey, setSanitizedKey] = useState("")
-  let completedCaptcha = false
 
   const hexEncode = useCallback(
     (str) => [...str].map((c) => (c.charCodeAt(0) * 2).toString(16)).join(""),
@@ -37,7 +37,7 @@ export default function Checkpoint() {
 
     window.onCaptchaSuccess = () => {
       if (!can_create_key) {
-        completedCaptcha = true
+        setCompletedCaptcha(true)
         setContinueIcon(true)
         const proceedTextElement = document.getElementById("Proceed-Text")
         if (proceedTextElement) proceedTextElement.textContent = "Continue"
@@ -152,7 +152,7 @@ export default function Checkpoint() {
         }
       }
     }
-  }, [isCopy, sanitizedKey, keyComplete, sLink])
+  }, [isCopy, sanitizedKey, keyComplete, completedCaptcha, sLink])
 
   return (
     <>
@@ -188,7 +188,7 @@ export default function Checkpoint() {
               id="Proceed"
               onClick={handleProceedClick}
             >
-              <span className="flex items-center space-x-2">
+              <span className="flex items-center space-x-1">
                 {createKeyIcon && <ChevronRight className="h-6 w-6" />}
                 {copyIcon && <Copy className="h-6 w-6" />}
                 {checkIcon && <Check className="h-6 w-6" />}
