@@ -42,7 +42,7 @@ const Dev = () => {
                 />
                 <h3 className="text-xl font-bold mb-2 text-white" id="main_coder_name"></h3>
                 <p className="text-white">
-                  Former Owner
+                  Owner
                   <br />
                   <br />
                   <b>JavaScript (Node & Next)</b>, <b>React</b>, <b>Lua 5.1 - 5.3</b>, <b>Luau</b>, <b>HTML</b>, <b>C++</b>
