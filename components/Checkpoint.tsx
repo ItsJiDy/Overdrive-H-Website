@@ -172,7 +172,6 @@ export default function Checkpoint() {
             <p id="description">
               Click '<b>Continue</b>' in order to proceed to the next checkpoint.
             </p>
-            <br />
           </div>
           {captcha && (
             <div className="flex justify-center">
@@ -194,8 +193,8 @@ export default function Checkpoint() {
                 {copyIcon && <Copy className="h-6 w-6" />}
                 {checkIcon && <Check className="h-6 w-6" />}
                 <p id="Proceed-Text">Please complete the captcha first!</p>
+                {continueIcon && <ArrowRightFromLine className="h-6 w-6 ml-auto" />}
               </span>
-              {continueIcon && <ArrowRightFromLine className="h-6 w-6 ml-auto" />}
             </button>
           </div>
           <br />
