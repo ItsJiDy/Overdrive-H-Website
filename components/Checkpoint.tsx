@@ -14,6 +14,7 @@ export default function Checkpoint() {
   const [keyComplete, setKeyComplete] = useState(false)
   const [sLink, setSLink] = useState("")
   const [isCopy, setIsCopy] = useState(false)
+  const [isBypassed, setBypassed] = useState(false)
   const [sanitizedKey, setSanitizedKey] = useState("")
 
   const hexEncode = useCallback(
@@ -80,17 +81,26 @@ export default function Checkpoint() {
       return
     }
 
-    if (document.referrer === "https://linkvertise.com/" && !revoked) {
-      const last_hash = localstorage.getItem("r_si_v")
-      if (hash && hash !== "" && hash !== last_hash) {
-        localstorage.setItem("r_si_v", hash)
-        const n_st_e = localstorage.getItem("n_st_e") || special_key
-        localstorage.setItem("n_st_e", ((Number(n_st_e) / Number(special_key) + 1) * Number(special_key)).toString())
+    const last_hash = localstorage.getItem("r_si_v")
+    if (hash && hash !== "" && hash !== last_hash) {
+      if (!revoked) {
+        if (document.referrer === "https://linkvertise.com/") {
+          localstorage.setItem("r_si_v", hash)
+          const n_st_e = localstorage.getItem("n_st_e") || special_key
+          localstorage.setItem("n_st_e", ((Number(n_st_e) / Number(special_key) + 1) * Number(special_key)).toString())
+        } else {
+          localstorage.setItem("gfy_h", "AH")
+        }
       }
       setTimeout(() => {
         window.location.href = "/checkpoint"
       }, 100)
       return
+    }
+
+    if (localstorage.getItem("gfy_h") == "AH") {
+      localstorage.removeItem("gfy_h")
+      setBypassed(true)
     }
 
     const t_key = localstorage.getItem("sgh_s")
@@ -131,9 +141,12 @@ export default function Checkpoint() {
     const localstorage = localStorage
     if (isCopy) {
       navigator.clipboard.writeText(sanitizedKey)
+      const proceedTextElement = document.getElementById("Proceed-Text")
+      if (proceedTextElement) proceedTextElement.textContent = "Copied"
       setCopyIcon(false)
       setCheckIcon(true)
       setTimeout(() => {
+        if (proceedTextElement) proceedTextElement.textContent = "Copy"
         setCopyIcon(true)
         setCheckIcon(false)
       }, 1000)
@@ -197,6 +210,14 @@ export default function Checkpoint() {
                 {continueIcon && <ArrowRightFromLine className="h-6 w-6 ml-auto" />}
               </span>
             </button>
+          </div>
+          <div className="mb-6 text-center">
+            <p>
+              Thank you for using <b>Overdrive H</b>
+            </p>
+            {isBypassed && <p className="text-red-600">
+              Seems like you just bypassed but didn't worked :)
+            </p>}
           </div>
           <br />
         </div>
