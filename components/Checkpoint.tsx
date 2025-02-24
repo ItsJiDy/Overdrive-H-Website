@@ -36,8 +36,8 @@ export default function Checkpoint() {
     let can_create_key = false
 
     window.onCaptchaSuccess = () => {
+      setCompletedCaptcha(true)
       if (!can_create_key) {
-        setCompletedCaptcha(true)
         setContinueIcon(true)
         const proceedTextElement = document.getElementById("Proceed-Text")
         if (proceedTextElement) proceedTextElement.textContent = "Continue"
@@ -139,8 +139,8 @@ export default function Checkpoint() {
     } else {
       if (completedCaptcha) {
         if (keyComplete) {
-          const descriptionElement = document.getElementById("description")
-          if (descriptionElement) descriptionElement.textContent = "...";
+          const proceedTextElement = document.getElementById("Proceed-Text")
+          if (proceedTextElement) proceedTextElement.textContent = "..."
           setCreateKeyIcon(false)
           setTimeout(() => {
             localstorage.setItem("sgh_s", sanitizedKey)
