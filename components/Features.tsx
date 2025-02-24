@@ -31,7 +31,12 @@ const features = [
     icon: <Layout className="h-6 w-6" />,
     title: "Modern Interface",
     description: "Fresh and Clean Interface for user experience.",
-  }
+  },
+  {
+    icon: <MessageCircleMore className="h-6 w-6" />,
+    title: "Global Chat",
+    description: "Chat with anyone who uses the script in the Chat Tab across the servers.",
+  },
 ]
 
 const Features = () => {
@@ -46,21 +51,11 @@ const Features = () => {
                 key={index}
                 className="bg-gray-800 bg-opacity-50 p-6 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:border-blue-500 border-2 border-transparent items-center justify-center text-center"
               >
-                <div className="text-blue-500 mb-4">{feature.icon}</div>
+                <div className="text-blue-500 mb-4 text-center">{feature.icon}</div>
                 <h3 className="text-xl font-bold mb-2 text-white">{feature.title}</h3>
                 <p className="text-white">{feature.description}</p>
               </div>
             ))}
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-1 gap-8 items-center justify-center">
-              <div
-                key="7"
-                className="bg-gray-800 bg-opacity-50 p-6 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:border-blue-500 border-2 border-transparent items-center justify-center text-center"
-              >
-                <div className="text-blue-500 mb-4"><MessageCircleMore className="h-6 w-6" /></div>
-                <h3 className="text-xl font-bold mb-2 text-white">Global Chat</h3>
-                <p className="text-white">Chat with anyone who uses the script in the Chat Tab across the servers.</p>
-              </div>
           </div>
         </div>
       </section>
