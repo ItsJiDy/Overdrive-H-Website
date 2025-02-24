@@ -38,21 +38,22 @@ const Navbar = () => {
           />
           <div className="text-2xl font-bold">Overdrive H</div>
         </div>
-        <div>
-          <button onClick={() => setIsOpen(!isOpen)}>{isOpen ? <X /> : <Menu />}</button>
+        <div className="md:hidden">
+          <button onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? <X /> : <Menu />}
+          </button>
         </div>
         <div
           ref={navRef}
-          className={`w-full md:w-auto md:flex transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? "max-h-96" : "max-h-0 md:max-h-full"}`}
+          className={`w-full md:w-auto md:flex transition-all duration-300 ease-in-out overflow-hidden ${
+            isOpen ? "max-h-96" : "max-h-0 md:max-h-full md:!flex"
+          }`}
         >
           {navItems.map((item, index) => (
             <Link
               key={item.name}
               href={item.href}
-              className={`flex items-center md:inline-block md:ml-6 py-2 px-4 transition-all duration-300 ease-in-out ${
-                isOpen ? "opacity-100 translate-y-0" : "opacity-0 md:opacity-100 translate-y-full md:translate-y-0"
-              } ${isOpen ? `delay-[${index * 100}ms]` : ""}`}
-              style={{ transitionDelay: isOpen ? `${index * 100}ms` : "0ms" }}
+              className="flex items-center md:inline-block md:ml-6 py-2 px-4 transition-all duration-300 ease-in-out"
             >
               {item.icon}
               {item.name}
