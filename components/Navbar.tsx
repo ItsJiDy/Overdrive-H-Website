@@ -67,10 +67,7 @@ const Navbar = () => {
               } ${isOpen ? `delay-[${index * 100}ms]` : ""}`}
               style={{ transitionDelay: isOpen ? `${index * 100}ms` : "0ms" }}
             >
-              <span className="flex items-center space-x-2">
-                {item.icon}
-                <span className="inline-block">{item.name}</span>
-              </span>
+             <span className="inline-block">{item.icon} {item.name}</span>
             </Link>
           ))}
         </div>
