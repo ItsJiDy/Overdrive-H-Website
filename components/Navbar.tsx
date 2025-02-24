@@ -62,13 +62,13 @@ const Navbar = () => {
             <Link
               key={item.name}
               href={item.href}
-              className={`flex items-center md:inline-block md:ml-6 py-2 px-4 transition-all duration-300 ease-in-out ${
+              className={`flex items-center gap-2 md:inline-block md:ml-6 py-2 px-4 transition-all duration-300 ease-in-out ${
                 isOpen ? "opacity-100 translate-y-0" : "opacity-0 md:opacity-100 translate-y-full md:translate-y-0"
               } ${isOpen ? `delay-[${index * 100}ms]` : ""}`}
               style={{ transitionDelay: isOpen ? `${index * 100}ms` : "0ms" }}
             >
               {item.icon}
-              {item.name}
+              <span>{item.name}</span>
             </Link>
           ))}
         </div>
