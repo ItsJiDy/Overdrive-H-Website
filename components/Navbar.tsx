@@ -62,12 +62,12 @@ const Navbar = () => {
             <Link
               key={item.name}
               href={item.href}
-              className="flex flex-row items-center md:inline-flex md:ml-6 py-2 px-4 transition-all duration-300 ease-in-out ${
+              className={`flex flex-row items-center md:inline-flex md:ml-6 py-2 px-4 transition-all duration-300 ease-in-out ${
                 isOpen ? "opacity-100 translate-y-0" : "opacity-0 md:opacity-100 translate-y-full md:translate-y-0"
               } ${isOpen ? `delay-[${index * 100}ms]` : ""}`}
               style={{ transitionDelay: isOpen ? `${index * 100}ms` : "0ms" }}
             >
-             <span className="flex items-center space-x-2">
+              <span className="flex items-center space-x-2">
                 {item.icon}
                 <span className="inline-block">{item.name}</span>
               </span>
