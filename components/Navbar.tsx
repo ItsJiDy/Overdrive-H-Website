@@ -67,8 +67,8 @@ const Navbar = () => {
               } ${isOpen ? `delay-[${index * 100}ms]` : ""}`}
               style={{ transitionDelay: isOpen ? `${index * 100}ms` : "0ms" }}
             >
-              {item.icon}
-              <span>{item.name}</span>
+              <span className="w-5 h-5 flex-shrink-0">{item.icon}</span>
+              <span className="whitespace-nowrap">{item.name}</span>
             </Link>
           ))}
         </div>
