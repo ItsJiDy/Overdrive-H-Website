@@ -45,6 +45,7 @@ export default function Checkpoint() {
         const proceedTextElement = document.getElementById("Proceed-Text")
         if (proceedTextElement) proceedTextElement.textContent = "Create Key"
         setCreateKeyIcon(true)
+        setKeyComplete(true)
       }
     }
 
