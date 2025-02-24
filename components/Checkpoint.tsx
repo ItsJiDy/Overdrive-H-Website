@@ -14,6 +14,7 @@ export default function Checkpoint() {
   const [sLink, setSLink] = useState("")
   const [isCopy, setIsCopy] = useState(false)
   const [sanitizedKey, setSanitizedKey] = useState("")
+  let completedCaptcha = false
 
   const hexEncode = useCallback(
     (str) => [...str].map((c) => (c.charCodeAt(0) * 2).toString(16)).join(""),
@@ -33,7 +34,6 @@ export default function Checkpoint() {
     const hash = searchParams.get("hash")
     const localstorage = localStorage
     let can_create_key = false
-    let completedCaptcha = false
 
     window.onCaptchaSuccess = () => {
       if (!can_create_key) {
@@ -189,14 +189,12 @@ export default function Checkpoint() {
               id="Proceed"
               onClick={handleProceedClick}
             >
-              {}
               <span className="flex items-center space-x-2">
                 {createKeyIcon && <ChevronRight className="h-6 w-6" />}
                 {copyIcon && <Copy className="h-6 w-6" />}
                 {checkIcon && <Check className="h-6 w-6" />}
                 <p id="Proceed-Text">Please complete the captcha first!</p>
               </span>
-              {}
               {continueIcon && <ArrowRightFromLine className="h-6 w-6 ml-auto" />}
             </button>
           </div>
