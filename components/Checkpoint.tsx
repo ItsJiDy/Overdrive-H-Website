@@ -16,6 +16,7 @@ export default function Checkpoint() {
   const [isCopy, setIsCopy] = useState(false)
   const [isBypassed, setBypassed] = useState(false)
   const [sanitizedKey, setSanitizedKey] = useState("")
+  const [specialKey, setSpecialKey] = useState("")
 
   const hexEncode = useCallback(
     (str) => [...str].map((c) => (c.charCodeAt(0) * 2).toString(16)).join(""),
@@ -104,16 +105,28 @@ export default function Checkpoint() {
     }
 
     const t_key = localstorage.getItem("sgh_s")
+    const d_key = localstorage.getItem("dp_xnm")
     const checkpoints = document.getElementById("COMPLETED_CHECKPOINTS")
     if (t_key && t_key !== "") {
-      const descriptionElement = document.getElementById("description")
-      if (descriptionElement) descriptionElement.innerHTML = "Your Key: <b>" + t_key + "</b>"
-      if (checkpoints) checkpoints.textContent = "3"
-      setIsCopy(true)
-      setSanitizedKey(t_key)
-      setCopyIcon(true)
-      const proceedTextElement = document.getElementById("Proceed-Text")
-      if (proceedTextElement) proceedTextElement.textContent = "Copy"
+      const b = Math.floor(Date.now() / 1000)
+      const c = parseInt(d_key)
+      if (d_key && c > b) {
+        const descriptionElement = document.getElementById("description")
+        if (descriptionElement) descriptionElement.innerHTML = "Your Key: <b>" + t_key + "</b>"
+        if (checkpoints) checkpoints.textContent = "3"
+        setIsCopy(true)
+        setSanitizedKey(t_key)
+        setCopyIcon(true)
+        const proceedTextElement = document.getElementById("Proceed-Text")
+        if (proceedTextElement) proceedTextElement.textContent = "Copy"
+      } else {
+        localstorage.removeItem("dp_xnm")
+        localstorage.removeItem("sgh_s")
+        localstorage.removeItem("n_st_e")
+        localstorage.removeItem("d_shg")
+        window.location.reload()
+        return
+      }
     } else {
       const total_checkpoints =
         (Number.parseInt(localstorage.getItem("n_st_e") || "0") || Number(special_key)) / Number(special_key)
@@ -131,7 +144,8 @@ export default function Checkpoint() {
         const descriptionElement = document.getElementById("description")
         if (descriptionElement) descriptionElement.innerHTML = "Click '<b>Create Key</b>' to create your key.";
         can_create_key = true
-        setSanitizedKey(hexEncode(hardware.toString() + "_" + (Math.floor(Date.now() / 1000) + 108000).toString()))
+        setSanitizedKey(hardware)
+        setSpecialKey(special_key.toString())
       }
       setCaptchaIcon(true)
     }
@@ -157,16 +171,18 @@ export default function Checkpoint() {
           if (proceedTextElement) proceedTextElement.textContent = "..."
           setCreateKeyIcon(false)
           setTimeout(() => {
-            localstorage.setItem("sgh_s", sanitizedKey)
+            const expiryKey = Math.floor(Date.now() / 1000) + 108000
+            localstorage.setItem("dp_xnm", exp * parseInt(specialKey))
+            localstorage.setItem("sgh_s", hexEncode(sanitizedKey.toString() + "_" + exp.toString()))
             localstorage.removeItem("n_st_e")
-            window.location.reload()
+            window.location.href = "/checkpoint"
           }, 1500)
         } else {
           window.location.href = sLink
         }
       }
     }
-  }, [isCopy, sanitizedKey, keyComplete, completedCaptcha, sLink])
+  }, [isCopy, sanitizedKey, keyComplete, completedCaptcha, sLink, hexEncode])
 
   return (
     <>
