@@ -171,7 +171,7 @@ export default function Checkpoint() {
           if (proceedTextElement) proceedTextElement.textContent = "..."
           setCreateKeyIcon(false)
           setTimeout(() => {
-            const expiryKey = Math.floor(Date.now() / 1000) + 108000
+            const exp = Math.floor(Date.now() / 1000) + 108000
             localstorage.setItem("dp_xnm", exp * parseInt(specialKey))
             localstorage.setItem("sgh_s", hexEncode(sanitizedKey.toString() + "_" + exp.toString()))
             localstorage.removeItem("n_st_e")
