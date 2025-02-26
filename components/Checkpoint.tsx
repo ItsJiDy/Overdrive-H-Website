@@ -110,7 +110,7 @@ export default function Checkpoint() {
     if (t_key && t_key !== "") {
       const b = Math.floor(Date.now() / 1000)
       const c = parseInt(d_key)
-      if (d_key && c > b) {
+      if (c && c > b) {
         const descriptionElement = document.getElementById("description")
         if (descriptionElement) descriptionElement.innerHTML = "Your Key: <b>" + t_key + "</b>"
         if (checkpoints) checkpoints.textContent = "3"
