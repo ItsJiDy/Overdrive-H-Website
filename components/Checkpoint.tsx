@@ -36,6 +36,7 @@ export default function Checkpoint() {
     const hash = searchParams.get("hash")
     const localstorage = localStorage
     let can_create_key = false
+    let total_streaks = 0
 
     window.onCaptchaSuccess = () => {
       setCompletedCaptcha(true)
@@ -99,6 +100,20 @@ export default function Checkpoint() {
       return
     }
 
+    if (special_key) {
+      const hardware = localstorage.getItem("rt_b")
+      if (hardware) {
+        let streak = parseInt(localstorage.getItem(hardware + "_uznop")) || 0
+        if (Math.floor(streak) !== streak) {
+          streak = 0
+        }
+        localstorage.setItem(hardware + "_uznop", streak)
+        total_streaks = (streak / special_key) / 50
+        const streaksElement = document.getElementById("streaks")
+        if (streaksElement) streaksElement.textContent = total_streaks.toString()
+      }
+    }
+
     if (localstorage.getItem("gfy_h") == "AH") {
       localstorage.removeItem("gfy_h")
       setBypassed(true)
@@ -107,6 +122,7 @@ export default function Checkpoint() {
     const t_key = localstorage.getItem("sgh_s")
     const d_key = localstorage.getItem("dp_xnm")
     const checkpoints = document.getElementById("COMPLETED_CHECKPOINTS")
+    const durationElement = document.getElementById("key-duration")
     if (t_key && t_key !== "") {
       const b = Math.floor(Date.now() / 1000)
       const c = (parseInt(d_key) || 1) / special_key
@@ -119,6 +135,7 @@ export default function Checkpoint() {
         setCopyIcon(true)
         const proceedTextElement = document.getElementById("Proceed-Text")
         if (proceedTextElement) proceedTextElement.textContent = "Copy"
+        if (durationElement) durationElement.textContent = (24 + ((total_streaks - 1) / 2)) + " Hours"
       } else {
         localstorage.removeItem("dp_xnm")
         localstorage.removeItem("sgh_s")
@@ -130,6 +147,7 @@ export default function Checkpoint() {
     } else {
       const total_checkpoints =
         (Number.parseInt(localstorage.getItem("n_st_e") || "0") || Number(special_key)) / Number(special_key)
+      if (durationElement) durationElement.textContent = (24 + (total_streaks / 2)) + " Hours"
       if (total_checkpoints === 1) {
         setSLink("https://link-hub.net/978899/overdrive-h-key-system")
       } else if (total_checkpoints === 2) {
@@ -171,10 +189,15 @@ export default function Checkpoint() {
           if (proceedTextElement) proceedTextElement.textContent = "..."
           setCreateKeyIcon(false)
           setTimeout(() => {
-            const exp = Math.floor(Date.now() / 1000) + 108000
-            localstorage.setItem("dp_xnm", exp * parseInt(specialKey))
-            localstorage.setItem("sgh_s", hexEncode(sanitizedKey.toString() + "_" + exp.toString()))
+            const sK = parseInt(specialKey)
+            const K = sanitizedKey.toString()
+            let streak = parseInt(localstorage.getItem(K + "_uznop")) || 0
+            const exp = Math.floor(Date.now() / 1000) + (86400 + (1800 * ((streak / sK) / 50)))
+            localstorage.setItem("dp_xnm", exp * sK)
+            localstorage.setItem("sgh_s", hexEncode(K + "_" + exp.toString()))
             localstorage.removeItem("n_st_e")
+            streak = ((streak / sK) + 50) * sK
+            localstorage.setItem(K + "_uznop", streak)
             window.location.href = "/checkpoint"
           }, 1500)
         } else {
@@ -196,10 +219,14 @@ export default function Checkpoint() {
             <p>
               Completed <b id="COMPLETED_CHECKPOINTS">0</b> out of <b>3</b>
               <br />
-              Key Duration: <b>30 Hours</b>
+              Key Duration: <b id="key-duration">24 Hours</b>
+              <br />
+              Streaks: <b id="streaks">0</b>
             </p>
             <br />
             <p id="description">
+              Each streak will guarantee you <b>+ 30 Minutes</b> Key Duration.
+              <br />
               Click '<b>Continue</b>' in order to proceed to the next checkpoint.
             </p>
           </div>
