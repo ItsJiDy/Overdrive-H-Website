@@ -109,7 +109,7 @@ export default function Checkpoint() {
           streak = 0
         }
         localstorage.setItem(hardware + "_uznop", streak)
-        total_streaks = (streak / parseInt(hexDecode(hexDecode(special_key)))) / 50
+        total_streaks = (streak / parseInt(hexDecode(hexDecode(hardware)))) / 50
         const streaksElement = document.getElementById("streaks")
         if (streaksElement) streaksElement.textContent = total_streaks.toString()
       }
