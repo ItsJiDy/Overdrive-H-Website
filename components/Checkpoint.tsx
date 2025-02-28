@@ -109,7 +109,7 @@ export default function Checkpoint() {
     const checkpoints = document.getElementById("COMPLETED_CHECKPOINTS")
     if (t_key && t_key !== "") {
       const b = Math.floor(Date.now() / 1000)
-      const c = parseInt(d_key)
+      const c = (parseInt(d_key) || 1) / special_key
       if (c && c > b) {
         const descriptionElement = document.getElementById("description")
         if (descriptionElement) descriptionElement.innerHTML = "Your Key: <b>" + t_key + "</b>"
