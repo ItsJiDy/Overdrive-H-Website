@@ -197,7 +197,7 @@ export default function Checkpoint() {
             localstorage.setItem("dp_xnm", exp * sK)
             localstorage.setItem("sgh_s", hexEncode(K + "_" + exp.toString()))
             localstorage.removeItem("n_st_e")
-            streak = ((streak / j) + 50) * sK
+            streak = ((streak / j) + 50) * j
             localstorage.setItem(hexEncode(hexEncode(K)) + "_uznop", streak)
             window.location.href = "/checkpoint"
           }, 1500)
