@@ -107,8 +107,12 @@ export default function Checkpoint() {
         if (Math.floor(streak) !== streak) {
           streak = 0
         }
-        localstorage.setItem(hexEncode(hardware) + "_uznop", streak)
         total_streaks = (streak / parseInt(hexDecode(hardware))) / 50
+        if (Math.floor(total_streaks) !== total_streaks) {
+          streak = 0
+          total_streaks = 0
+        }
+        localstorage.setItem(hexEncode(hardware) + "_uznop", streak)
         const streaksElement = document.getElementById("streaks")
         if (streaksElement) streaksElement.textContent = total_streaks.toString()
       }
@@ -192,13 +196,13 @@ export default function Checkpoint() {
             const sK = parseInt(specialKey)
             const K = sanitizedKey.toString()
             const j = parseInt(K)
-            let streak = parseInt(localstorage.getItem(K + "_uznop")) || 0
+            const m = hexEncode(hexEncode(K))
+            const streak = parseInt(localstorage.getItem(m + "_uznop")) || 0
             const exp = Math.floor(Date.now() / 1000) + (86400 + (1800 * ((streak / j) / 50)))
             localstorage.setItem("dp_xnm", exp * sK)
             localstorage.setItem("sgh_s", hexEncode(K + "_" + exp.toString()))
             localstorage.removeItem("n_st_e")
-            streak = ((streak / j) + 50) * j
-            localstorage.setItem(hexEncode(hexEncode(K)) + "_uznop", streak)
+            localstorage.setItem(m + "_uznop", ((streak / j) + 50) * j)
             window.location.href = "/checkpoint"
           }, 1500)
         } else {
