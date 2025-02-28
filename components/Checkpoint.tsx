@@ -193,7 +193,7 @@ export default function Checkpoint() {
             const sK = parseInt(specialKey)
             const K = sanitizedKey.toString()
             let streak = parseInt(localstorage.getItem(K + "_uznop")) || 0
-            const exp = Math.floor(Date.now() / 1000) + (86400 + (1800 * ((streak / sK) / 50)))
+            const exp = Math.floor(Date.now() / 1000) + (86400 + (1800 * ((streak / parseInt(K)) / 50)))
             localstorage.setItem("dp_xnm", exp * sK)
             localstorage.setItem("sgh_s", hexEncode(K + "_" + exp.toString()))
             localstorage.removeItem("n_st_e")
