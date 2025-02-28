@@ -135,7 +135,7 @@ export default function Checkpoint() {
         setCopyIcon(true)
         const proceedTextElement = document.getElementById("Proceed-Text")
         if (proceedTextElement) proceedTextElement.textContent = "Copy"
-        if (durationElement) durationElement.textContent = (24 + ((total_streaks - 1) / 2)) + " Hours"
+        if (durationElement) durationElement.textContent = (24 + (total_streaks / 2)) + " Hours"
       } else {
         localstorage.removeItem("dp_xnm")
         localstorage.removeItem("sgh_s")
@@ -197,7 +197,7 @@ export default function Checkpoint() {
             localstorage.setItem("sgh_s", hexEncode(K + "_" + exp.toString()))
             localstorage.removeItem("n_st_e")
             streak = ((streak / sK) + 50) * sK
-            localstorage.setItem(K + "_uznop", streak)
+            localstorage.setItem(hexEncode(K.toString()) + "_uznop", streak)
             window.location.href = "/checkpoint"
           }, 1500)
         } else {
@@ -226,6 +226,7 @@ export default function Checkpoint() {
             <br />
             <p id="description">
               Each streak will guarantee you <b>+ 30 Minutes</b> Key Duration.
+              <br />
               <br />
               Click '<b>Continue</b>' in order to proceed to the next checkpoint.
             </p>
