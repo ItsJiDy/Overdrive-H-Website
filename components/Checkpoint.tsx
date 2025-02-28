@@ -109,7 +109,7 @@ export default function Checkpoint() {
           streak = 0
         }
         localstorage.setItem(hardware + "_uznop", streak)
-        total_streaks = (streak / special_key) / 50
+        total_streaks = (streak / parseInt(hexDecode(hexDecode(special_key)))) / 50
         const streaksElement = document.getElementById("streaks")
         if (streaksElement) streaksElement.textContent = total_streaks.toString()
       }
@@ -197,7 +197,7 @@ export default function Checkpoint() {
             localstorage.setItem("dp_xnm", exp * sK)
             localstorage.setItem("sgh_s", hexEncode(K + "_" + exp.toString()))
             localstorage.removeItem("n_st_e")
-            streak = ((streak / sK) + 50) * sK
+            streak = ((streak / parseInt(K)) + 50) * sK
             localstorage.setItem(hexEncode(hexEncode(K.toString())) + "_uznop", streak)
             window.location.href = "/checkpoint"
           }, 1500)
