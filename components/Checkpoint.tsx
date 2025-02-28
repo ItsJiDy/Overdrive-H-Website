@@ -101,8 +101,9 @@ export default function Checkpoint() {
     }
 
     if (special_key) {
-      const hardware = localstorage.getItem("rt_b")
+      let hardware = localstorage.getItem("rt_b")
       if (hardware) {
+        hardware = hexEncode(hardware)
         let streak = parseInt(localstorage.getItem(hardware + "_uznop")) || 0
         if (Math.floor(streak) !== streak) {
           streak = 0
@@ -135,7 +136,7 @@ export default function Checkpoint() {
         setCopyIcon(true)
         const proceedTextElement = document.getElementById("Proceed-Text")
         if (proceedTextElement) proceedTextElement.textContent = "Copy"
-        if (durationElement) durationElement.textContent = (24 + (total_streaks / 2)) + " Hours"
+        if (durationElement || total_streaks > 0) durationElement.textContent = (24 + ((total_streaks - 1) / 2)) + " Hours"
       } else {
         localstorage.removeItem("dp_xnm")
         localstorage.removeItem("sgh_s")
@@ -197,7 +198,7 @@ export default function Checkpoint() {
             localstorage.setItem("sgh_s", hexEncode(K + "_" + exp.toString()))
             localstorage.removeItem("n_st_e")
             streak = ((streak / sK) + 50) * sK
-            localstorage.setItem(hexEncode(K.toString()) + "_uznop", streak)
+            localstorage.setItem(hexEncode(hexEncode(K.toString())) + "_uznop", streak)
             window.location.href = "/checkpoint"
           }, 1500)
         } else {
