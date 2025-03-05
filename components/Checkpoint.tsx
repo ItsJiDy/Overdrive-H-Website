@@ -39,9 +39,10 @@ export default function Checkpoint() {
     let total_streaks = 0
 
     window.onload = () => {
+      alert("window.onload: true")
       setTimeout(() => {
           const container = document.getElementById("hcaptcha-container");
-          if (!container) return;
+          if (!container) { alert("1892") };
           const captcha = document.createElement("div");
           captcha.id = "hcaptcha-widget";
           container.appendChild(captcha);
