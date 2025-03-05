@@ -63,7 +63,6 @@ export default function Checkpoint() {
               }
             }
           });
-        }
       }, 3000);
     }
 
