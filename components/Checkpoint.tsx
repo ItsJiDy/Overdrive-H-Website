@@ -38,18 +38,29 @@ export default function Checkpoint() {
     let can_create_key = false
     let total_streaks = 0
 
-    window.onCaptchaSuccess = () => {
-      setCompletedCaptcha(true)
-      if (!can_create_key) {
-        setContinueIcon(true)
-        const proceedTextElement = document.getElementById("Proceed-Text")
-        if (proceedTextElement) proceedTextElement.textContent = "Continue"
-      } else {
-        const proceedTextElement = document.getElementById("Proceed-Text")
-        if (proceedTextElement) proceedTextElement.textContent = "Create Key"
-        setCreateKeyIcon(true)
-        setKeyComplete(true)
-      }
+    window.onload = () => {
+      const container = document.getElementById("hcaptcha-container");
+      const captcha = document.createElement("div");
+      captcha.id = "hcaptcha-widget";
+      container.appendChild(captcha);
+      window.hcaptcha.render("hcaptcha-widget", {
+        sitekey: "7c404cc6-eef8-438c-ae44-442649bc36fe",
+        callback: function(token) {
+          if (token && token.length > 1295) {
+            setCompletedCaptcha(true)
+            if (!can_create_key) {
+              setContinueIcon(true)
+              const proceedTextElement = document.getElementById("Proceed-Text")
+              if (proceedTextElement) proceedTextElement.textContent = "Continue"
+            } else {
+              const proceedTextElement = document.getElementById("Proceed-Text")
+              if (proceedTextElement) proceedTextElement.textContent = "Create Key"
+              setCreateKeyIcon(true)
+              setKeyComplete(true)
+            }
+          }
+        }
+      });
     }
 
     let special_key = localstorage.getItem("d_shg")
@@ -214,7 +225,7 @@ export default function Checkpoint() {
 
   return (
     <>
-      <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></Script>
+      <Script src="https://js.hcaptcha.com/1/api.js" async defer></Script>
 
       <div className="min-h-screen flex items-center justify-center bg-black/50">
         <div className="max-w-md w-full bg-transparent border-2 rounded-lg transition-all duration-300 ease-in-out scale-90 transform hover:border-blue-500 hover:scale-100 border-2 border-transparent text-white">
@@ -236,15 +247,7 @@ export default function Checkpoint() {
               Click '<b>Continue</b>' in order to proceed to the next checkpoint.
             </p>
           </div>
-          {captcha && (
-            <div className="flex justify-center">
-            <div
-              className="cf-turnstile"
-              data-sitekey="0x4AAAAAAA9l-KYvvzkYwsM8"
-              data-callback="onCaptchaSuccess"
-            ></div>
-          </div>
-          )}
+          {captcha && (<div id="hcaptcha-container"></div>)}
           <div className="flex justify-center">
             <button
               className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all duration-300 ease-in-out transform hover:scale-105"
