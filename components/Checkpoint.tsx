@@ -39,9 +39,7 @@ export default function Checkpoint() {
     let total_streaks = 0
 
     window.onload = () => {
-      const checkHCaptcha = setInterval(() => {
-        if (window.hcaptcha) {
-          clearInterval(checkHCaptcha)
+      setTimeout(() => {
           const container = document.getElementById("hcaptcha-container");
           if (!container) return;
           const captcha = document.createElement("div");
@@ -66,7 +64,7 @@ export default function Checkpoint() {
             }
           });
         }
-      }, 500);
+      }, 3000);
     }
 
     let special_key = localstorage.getItem("d_shg")
