@@ -39,28 +39,34 @@ export default function Checkpoint() {
     let total_streaks = 0
 
     window.onload = () => {
-      const container = document.getElementById("hcaptcha-container");
-      const captcha = document.createElement("div");
-      captcha.id = "hcaptcha-widget";
-      container.appendChild(captcha);
-      window.hcaptcha.render("hcaptcha-widget", {
-        sitekey: "7c404cc6-eef8-438c-ae44-442649bc36fe",
-        callback: function(token) {
-          if (token && token.length > 1295) {
-            setCompletedCaptcha(true)
-            if (!can_create_key) {
-              setContinueIcon(true)
-              const proceedTextElement = document.getElementById("Proceed-Text")
-              if (proceedTextElement) proceedTextElement.textContent = "Continue"
-            } else {
-              const proceedTextElement = document.getElementById("Proceed-Text")
-              if (proceedTextElement) proceedTextElement.textContent = "Create Key"
-              setCreateKeyIcon(true)
-              setKeyComplete(true)
+      const checkHCaptcha = setInterval(() => {
+        if (window.hcaptcha) {
+          clearInterval(checkHCaptcha)
+          const container = document.getElementById("hcaptcha-container");
+          if (!container) return;
+          const captcha = document.createElement("div");
+          captcha.id = "hcaptcha-widget";
+          container.appendChild(captcha);
+          window.hcaptcha.render("hcaptcha-widget", {
+            sitekey: "7c404cc6-eef8-438c-ae44-442649bc36fe",
+            callback: function(token) {
+              if (token && token.length > 1295) {
+                setCompletedCaptcha(true)
+                if (!can_create_key) {
+                  setContinueIcon(true)
+                  const proceedTextElement = document.getElementById("Proceed-Text")
+                  if (proceedTextElement) proceedTextElement.textContent = "Continue"
+                } else {
+                  const proceedTextElement = document.getElementById("Proceed-Text")
+                  if (proceedTextElement) proceedTextElement.textContent = "Create Key"
+                  setCreateKeyIcon(true)
+                  setKeyComplete(true)
+                }
+              }
             }
-          }
+          });
         }
-      });
+      }, 500);
     }
 
     let special_key = localstorage.getItem("d_shg")
