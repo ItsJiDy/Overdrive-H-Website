@@ -248,7 +248,11 @@ export default function Checkpoint() {
               Click '<b>Continue</b>' in order to proceed to the next checkpoint.
             </p>
           </div>
-          {captcha && (<div id="hcaptcha-container"></div>)}
+          {captcha && (
+              <div className="flex justify-center">
+                  <div id="hcaptcha-container"></div>
+              </div>
+          )}
           <div className="flex justify-center">
             <button
               className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all duration-300 ease-in-out transform hover:scale-105"
