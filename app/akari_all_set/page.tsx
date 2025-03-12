@@ -9,16 +9,15 @@ export default function Home() {
       className="min-h-screen bg-fixed bg-cover bg-center"
       style={{ backgroundImage: "url('https://i.pinimg.com/originals/55/01/60/5501609ee45d514d1f2c4a63502045e2.gif')" }}
     >
-      <div className="bg-black bg-opacity-50 min-h-screen">
+      <div className="flex min-h-screen flex-col items-center justify-center bg-black bg-opacity-50 p-4">
         <FadeInSection>
-        <div className="flex min-h-screen flex-col items-center justify-center bg-white p-4">
           <div className="flex flex-col items-center text-center">
             <div className="mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-green-100">
               <Check className="h-12 w-12 text-green-600" strokeWidth={3} />
             </div>
             <h1 className="text-2xl font-medium text-gray-900">You are all set!</h1>
             <p className="mt-2 text-gray-600">You may now close this window.</p>
-          </div> </div> </FadeInSection>
+          </div> </FadeInSection>
       </div>
     </main>
   )
