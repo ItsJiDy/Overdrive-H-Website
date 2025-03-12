@@ -3,6 +3,7 @@
 import Script from "next/script"
 import { useEffect, useState, useCallback } from "react"
 import { ArrowRightFromLine, Copy, Check, ChevronRight } from "lucide-react"
+import { FadeInSection } from "@/utils/fadeInSection"
 
 export default function Checkpoint() {
   const [continueIcon, setContinueIcon] = useState(false)
@@ -225,7 +226,7 @@ export default function Checkpoint() {
   }, [isCopy, sanitizedKey, keyComplete, completedCaptcha, sLink, hexEncode])
 
   return (
-    <>
+    <> <FadeInSection>
       <Script src="https://js.hcaptcha.com/1/api.js" async defer></Script>
 
       <div className="min-h-screen flex items-center justify-center bg-black/50">
@@ -283,7 +284,7 @@ export default function Checkpoint() {
             )}
           </div>
         </div>
-      </div>
+      </div> </FadeInSection>
     </>
   )
 }
