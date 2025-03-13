@@ -26,13 +26,19 @@ export default function Home() {
       checkpoints: "5",
     },
     {
+      title: "5 Days",
+      keyDuration: "120 Hours",
+      checkpoints: "8",
+    },
+    {
       title: "7 Days",
       keyDuration: "168 Hours",
-      checkpoints: "8",
+      checkpoints: "10",
     },
   ]
 
   return (
+    <section className="flex flex-col items-center justify-center min-h-screen text-center px-4">
     <main className="container mx-auto py-10 px-4">
       <br />
       <FadeInSection>
@@ -68,6 +74,7 @@ export default function Home() {
         ))}
       </div>
     </main>
+    </section>
   )
 }
 
