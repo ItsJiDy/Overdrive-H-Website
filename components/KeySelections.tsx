@@ -58,7 +58,7 @@ export default function Home() {
             <CardFooter>
               <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all duration-300 ease-in-out transform hover:scale-105 flex justify-center">
                   <span className="flex items-center space-x-2">
-                      Proceed
+                      <p>Proceed</p>
                       <ArrowRightFromLine className="h-6 w-6 ml-auto" />
                   </span>
               </Button>
