@@ -34,12 +34,14 @@ export default function Home() {
 
   return (
     <main className="container mx-auto py-10 px-4">
+      <br />
       <FadeInSection>
-      <h1 className="text-3xl font-bold text-center mb-10">Select Duration</h1>
-
+        <h1 className="text-3xl font-bold text-center mb-10">Select Key Duration</h1>
+      </FadeInSection>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
         {durationOptions.map((option, index) => (
-          <Card key={index} className="h-full flex flex-col">
+          <FadeInSection>
+          <Card key={index} className="h-full flex flex-col bg-transparent border-2 rounded-lg transition-all duration-300 ease-in-out scale-90 transform hover:border-blue-500 hover:scale-100 border-2 border-transparent">
             <CardHeader>
               <CardTitle className="text-center">{option.title}</CardTitle>
             </CardHeader>
@@ -54,14 +56,17 @@ export default function Home() {
               </div>
             </CardContent>
             <CardFooter>
-              <Button className="w-full">
-                  Proceed
-                  <ArrowRightFromLine className="h-6 w-6 ml-auto" />
+              <Button className="w-full bg-blue-600">
+                  <span className="flex items-center space-x-2">
+                      <ArrowRightFromLine className="h-6 w-6 ml-auto" />
+                      Proceed
+                  </span>
               </Button>
             </CardFooter>
           </Card>
+          </FadeInSection>
         ))}
-      </div> </FadeInSection>
+      </div>
     </main>
   )
 }
