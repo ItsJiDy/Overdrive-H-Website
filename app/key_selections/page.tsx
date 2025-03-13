@@ -1,5 +1,5 @@
 import Navbar from "@/components/Navbar"
-import KeySelection from "@/components/KeySelection"
+import KeySelections from "@/components/KeySelections"
 import Footer from "@/components/Footer"
 
 export default function Home() {
@@ -10,7 +10,7 @@ export default function Home() {
     >
       <div className="bg-black bg-opacity-50 min-h-screen">
         <Navbar />
-        <KeySelection />
+        <KeySelections />
         <Footer />
       </div>
     </main>
