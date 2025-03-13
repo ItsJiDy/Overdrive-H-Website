@@ -36,40 +36,40 @@ const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <FadeInSection>
-      <section className="py-16 px-4">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center text-white">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
+  <section className="py-16 px-4">
+    <div className="container mx-auto">
+      <h2 className="text-3xl font-bold mb-8 text-center text-white">Frequently Asked Questions</h2>
+      <div className="space-y-4">
+        {faqs.map((faq, index) => (
+          <FadeInSection>
+          <div
+            key={index}
+            className="bg-gray-800 bg-opacity-50 rounded-lg overflow-hidden transition-all duration-300 ease-in-out"
+          >
+            <button
+              className="flex justify-between items-center w-full p-4 text-left text-white"
+              onClick={() => setOpenIndex(openIndex === index ? null : index)}
+            >
+              <span className="font-medium">{faq.question}</span>
               <div
-                key={index}
-                className="bg-gray-800 bg-opacity-50 rounded-lg overflow-hidden transition-all duration-300 ease-in-out"
+                className={`transform transition-transform duration-300 ${openIndex === index ? "rotate-180" : ""}`}
               >
-                <button
-                  className="flex justify-between items-center w-full p-4 text-left text-white"
-                  onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                >
-                  <span className="font-medium">{faq.question}</span>
-                  <div
-                    className={`transform transition-transform duration-300 ${openIndex === index ? "rotate-180" : ""}`}
-                  >
-                    <ChevronDown />
-                  </div>
-                </button>
-                <div
-                  className={`transition-all duration-300 ease-in-out ${
-                    openIndex === index ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
-                  } overflow-hidden`}
-                >
-                  <p className="p-4 text-white">{faq.answer}</p>
-                </div>
+                <ChevronDown />
               </div>
-            ))}
+            </button>
+            <div
+              className={`transition-all duration-300 ease-in-out ${
+                openIndex === index ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
+              } overflow-hidden`}
+            >
+              <p className="p-4 text-white">{faq.answer}</p>
+            </div>
           </div>
-        </div>
-      </section>
-    </FadeInSection>
+          </FadeInSection>
+        ))}
+      </div>
+    </div>
+  </section>
   )
 }
 

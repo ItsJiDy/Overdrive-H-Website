@@ -37,8 +37,10 @@ export default function Home() {
       <br />
       <FadeInSection>
         <h1 className="text-3xl font-bold text-center mb-10">Select Key Duration</h1>
+      </FadeInSection>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
         {durationOptions.map((option, index) => (
+          <FadeInSection>
           <Card key={index} className="h-full flex flex-col bg-transparent border-2 rounded-lg transition-all duration-300 ease-in-out scale-90 transform hover:border-blue-500 hover:scale-100 border-2 border-transparent">
             <CardHeader>
               <CardTitle className="text-center">{option.title}</CardTitle>
@@ -54,7 +56,7 @@ export default function Home() {
               </div>
             </CardContent>
             <CardFooter>
-              <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all duration-300 ease-in-out transform hover:scale-105">
+              <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all duration-300 ease-in-out transform hover:scale-105 flex justify-center">
                   <span className="flex items-center space-x-2">
                       Proceed
                       <ArrowRightFromLine className="h-6 w-6 ml-auto" />
@@ -62,8 +64,9 @@ export default function Home() {
               </Button>
             </CardFooter>
           </Card>
+          </FadeInSection>
         ))}
-      </div> </FadeInSection>
+      </div>
     </main>
   )
 }
