@@ -132,7 +132,7 @@ export default function Checkpoint() {
                 return
             } else {
                 document.getElementById("completed_checkpoints").textContent = current_checkpoint.toString()
-                if (current_checkpoint == total_checkpoint) {
+                if (current_checkpoint == total_checkpoints) {
                     setButton(false)
                     document.getElementById("description").textContent = "You have been authenticated!"
                 } else {
