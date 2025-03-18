@@ -69,6 +69,7 @@ export default function Checkpoint() {
             Checkpoints = 8,
             Unix = 432000
         },
+        {
             Text = "7 Days",
             Checkpoints = 10,
             Unix = 604800
