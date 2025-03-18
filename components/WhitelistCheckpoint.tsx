@@ -77,14 +77,24 @@ export default function Checkpoint() {
     ]
     let unix
     let total_checkpoints
+
+    function hexEncode(str) {
+      return [...str].map(c => {
+        return {c.charCodeAt(0) * 2).toString(16).padStart(2, "0")
+      }).join("");
+    }
     
-    if (!hwid || hwid == "") {
+    function hexDecode(hexStr) {
+      return hexStr.match(/.{1,2}/g).map(byte => String.fromCharCode(parseInt(byte, 16) / 2)).join("");
+    }
+
+    if (!hwid || hwid == "" || !parseInt(hexDecode(hwid))) {
         window.location.href = "/whitelist/selections"
         return
     }
 
     if (selected_duration) {
-        const ok = whitelist_duration[selected_duration]
+        const ok = whitelist_duration[selected_duration - 1]
         if (ok) {
             unix = ok.Unix
             total_checkpoints = ok.Checkpoints
@@ -111,61 +121,81 @@ export default function Checkpoint() {
         }
     }
 
-    if (!special_key || !decryption_key) {
-        special_key = parseInt(Math.random() * 9999999)
-        localstorage.setItem("seiVi", special_key)
-        localstorage.setItem("bfvgiO_kPe", (64000 * special_key) * special_key)
-        window.location.href = "/whitelist/checkpoint"
-        return
-    } else {
-        if (((decryption_key / special_key) / special_key) == 64000) {
-            let current_checkpoint = parseInt(localstorage.getItem("hdocnoOe"))
-            if (!current_checkpoint) {
-                current_checkpoint = 0
-                localstorage.setItem("hdocnoOe", (3 * special_key) * special_key)
-            } else {
-                current_checkpoint = ((current_checkpoint / special_key) / special_key) - 3
-            }
-            if (current_checkpoint > total_checkpoints || current_checkpoint < 0) {
-                localstorage.removeItem("hdocnoOe")
-                window.location.href = "/whitelist/checkpoint"
-                return
-            } else {
-                document.getElementById("completed_checkpoints").textContent = current_checkpoint.toString()
-                if (current_checkpoint == total_checkpoints) {
-                    setButton(false)
-                    document.getElementById("description").textContent = "You have been authenticated!"
-                } else if (current_checkpoint == 0) {
-                    setLink("https://link-hub.net/978899/overdrive-h-key-system")
-                } else if (current_checkpoint === 1) {
-                    setLink("https://link-hub.net/978899/overdrive-h-checkpoint-2")
-                } else if (current_checkpoint === 2) {
-                    setLink("https://direct-link.net/978899/overdrive-h-checkpoint-3")
-                } else if (current_checkpoint === 3) {
-                    setLink("https://direct-link.net/978899/overdrive-h-checkpoint-4")
-                } else if (current_checkpoint === 4) {
-                    setLink("https://direct-link.net/978899/overdrive-h-checkpoint-5")
-                } else if (current_checkpoint === 5) {
-                    setLink("https://direct-link.net/978899/overdrive-h-checkpoint-6")
-                } else if (current_checkpoint === 6) {
-                    setLink("https://direct-link.net/978899/overdrive-h-checkpoint-7")
-                } else if (current_checkpoint === 7) {
-                    setLink("https://direct-link.net/978899/overdrive-h-checkpoint-8")
-                } else if (current_checkpoint === 8) {
-                    setLink("https://direct-link.net/978899/overdrive-h-checkpoint-9")
-                } else if (current_checkpoint === 9) {
-                    setLink("https://direct-link.net/978899/overdrive-h-checkpoint-10")
-                }
-            }
-        } else {
+    const authentication = async () => {
+      try {
+        const response = await axios.post("http://localhost:3000/v1/whitelist?i=" + hexEncode(Math.floor(Date.now() / 1000) + " " + hwid + " " + unix))
+        if (response.data.status == 200) {
+          window.location.href = "/whitelist/checkpoint"
+        }
+      } catch {}
+    };
+
+    const main = async () => {
+      const response = await axios.get("http://localhost:3000/v1/whitelist?d=" + hwid)
+      if (response.data.valid) {
+        setButton(false)
+        setCaptcha(false)
+        document.getElementById("description").textContent = "You have been authenticated!"
+      } else {
+        if (!special_key || !decryption_key) {
             special_key = parseInt(Math.random() * 9999999)
             localstorage.setItem("seiVi", special_key)
             localstorage.setItem("bfvgiO_kPe", (64000 * special_key) * special_key)
             window.location.href = "/whitelist/checkpoint"
             return
+        } else {
+            if (((decryption_key / special_key) / special_key) == 64000) {
+                let current_checkpoint = parseInt(localstorage.getItem("hdocnoOe"))
+                if (!current_checkpoint) {
+                    current_checkpoint = 0
+                    localstorage.setItem("hdocnoOe", (3 * special_key) * special_key)
+                } else {
+                    current_checkpoint = ((current_checkpoint / special_key) / special_key) - 3
+                }
+                if (current_checkpoint > total_checkpoints || current_checkpoint < 0) {
+                    localstorage.removeItem("hdocnoOe")
+                    window.location.href = "/whitelist/checkpoint"
+                    return
+                } else {
+                    document.getElementById("completed_checkpoints").textContent = current_checkpoint.toString()
+                    if (current_checkpoint == total_checkpoints) {
+                        setButton(false)
+                        setCaptcha(false)
+                        document.getElementById("description").textContent = "Authenticating..."
+                        authentication()
+                    } else if (current_checkpoint == 0) {
+                        setLink("https://link-hub.net/978899/overdrive-h-key-system")
+                    } else if (current_checkpoint === 1) {
+                        setLink("https://link-hub.net/978899/overdrive-h-checkpoint-2")
+                    } else if (current_checkpoint === 2) {
+                        setLink("https://direct-link.net/978899/overdrive-h-checkpoint-3")
+                    } else if (current_checkpoint === 3) {
+                        setLink("https://direct-link.net/978899/overdrive-h-checkpoint-4")
+                    } else if (current_checkpoint === 4) {
+                        setLink("https://direct-link.net/978899/overdrive-h-checkpoint-5")
+                    } else if (current_checkpoint === 5) {
+                        setLink("https://direct-link.net/978899/overdrive-h-checkpoint-6")
+                    } else if (current_checkpoint === 6) {
+                        setLink("https://direct-link.net/978899/overdrive-h-checkpoint-7")
+                    } else if (current_checkpoint === 7) {
+                        setLink("https://direct-link.net/978899/overdrive-h-checkpoint-8")
+                    } else if (current_checkpoint === 8) {
+                        setLink("https://direct-link.net/978899/overdrive-h-checkpoint-9")
+                    } else if (current_checkpoint === 9) {
+                        setLink("https://direct-link.net/978899/overdrive-h-checkpoint-10")
+                    }
+                }
+            } else {
+                special_key = parseInt(Math.random() * 9999999)
+                localstorage.setItem("seiVi", special_key)
+                localstorage.setItem("bfvgiO_kPe", (64000 * special_key) * special_key)
+                window.location.href = "/whitelist/checkpoint"
+                return
+            }
         }
+      }
     }
-    
+    main()
  }, [])
  
   const handleProceedClick = useCallback(() => {
