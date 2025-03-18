@@ -101,7 +101,7 @@ export default function Checkpoint() {
 
     const last_hash = localstorage.getItem("ehcopahskdnHe")
     if (hash && hash !== "" && hash !== last_hash) {
-        if (document.referrer === "https://linkvertise.com/") {
+        if (document.referrer === "https://linkvertise.com/" && hash.length > 14) {
            localstorage.setItem("ehcopahskdnHe", hash)
            localstorage.setItem("hdocnoOe", ((parseInt(((parseInt(localstorage.getItem("hdocnoOe")) || 0) / special_key) / special_key) + 1) * special_key) * special_key)
            window.location.href = "/whitelist/checkpoint"
@@ -169,14 +169,12 @@ export default function Checkpoint() {
       <div className="min-h-screen flex items-center justify-center bg-black/50">
         <div className="max-w-md w-full bg-transparent border-2 rounded-lg transition-all duration-300 ease-in-out scale-90 transform hover:border-blue-500 hover:scale-100 border-2 border-transparent text-white">
           <br />
-          <h1 className="text-2xl font-bold text-center mb-4">Key System</h1>
+          <h1 className="text-2xl font-bold text-center mb-4">Whitelist System</h1>
           <div className="mb-6 text-center">
             <p>
               Completed <b id="completed_checkpoints">0</b> out of <b id="total_checkpoints">3</b>
               <br />
               Key Duration: <b id="key-duration">0 Hours</b>
-              <br />
-              Streaks: <b id="streaks">0</b>
             </p>
             <br />
             <p id="description">
