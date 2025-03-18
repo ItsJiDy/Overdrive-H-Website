@@ -80,7 +80,7 @@ export default function Checkpoint() {
 
     function hexEncode(str) {
       return [...str].map(c => {
-        return {c.charCodeAt(0) * 2).toString(16).padStart(2, "0")
+        return (c.charCodeAt(0) * 2).toString(16).padStart(2, "0")
       }).join("");
     }
     
