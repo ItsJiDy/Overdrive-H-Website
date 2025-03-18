@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { ArrowRightFromLine } from "lucide-react"
 import { FadeInSection } from "@/utils/fadeInSection"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 export default function Home() {
   const durationOptions = [
@@ -37,18 +37,19 @@ export default function Home() {
       checkpoints: "10",
     },
   ]
-  let hwid
+  const [hwid, setHwid] = useState("")
   
   useEffect(() => {
       const searchParams = new URLSearchParams(window.location.search)
-     hwid = searchParams.get("d")
-     if (!hwid || hwid == "") {
+     const s = searchParams.get("d")
+     if (!s || s == "") {
        window.location.href = "/"
        return
      }
-  }, [])
+     setHwid(s)
+  }, []);
 
-  return (<>
+  return (
     <section className="flex flex-col items-center justify-center min-h-screen text-center px-4">
     <main className="container mx-auto py-10 px-4">
       <br />
@@ -73,13 +74,13 @@ export default function Home() {
               </div>
             </CardContent>
             <CardFooter>
-              <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all duration-300 ease-in-out transform hover:scale-105 flex justify-center">
-                  <span className="flex items-center space-x-2">
-                      <p onclick={
+              <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all duration-300 ease-in-out transform hover:scale-105 flex justify-center" onclick={
                           localStorage.setItem("vKoeldnIw", index)
                           localStorage.setItem("JdokSbox", hwid)
                           window.location.href = "/whitelist/checkpoint"
-                      }>Proceed</p>
+                      }>
+                  <span className="flex items-center space-x-2">
+                      <p>Proceed</p>
                       <ArrowRightFromLine className="h-6 w-6 ml-auto" />
                   </span>
               </Button>
@@ -89,7 +90,7 @@ export default function Home() {
         ))}
       </div>
     </main>
-    </section></>
+    </section>
   )
 }
 
