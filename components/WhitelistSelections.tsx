@@ -48,7 +48,7 @@ export default function Home() {
      }
   }, [])
 
-  return (
+  return (<>
     <section className="flex flex-col items-center justify-center min-h-screen text-center px-4">
     <main className="container mx-auto py-10 px-4">
       <br />
@@ -89,7 +89,7 @@ export default function Home() {
         ))}
       </div>
     </main>
-    </section>
+    </section></>
   )
 }
 
