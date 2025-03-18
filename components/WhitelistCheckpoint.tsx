@@ -45,34 +45,34 @@ export default function Checkpoint() {
     let hwid = localstorage.getItem("JdokSbox")
     const whitelist_duration = [
         {
-            Text = "6 Hours",
-            Checkpoints = 1,
-            Unix = 21600
+            Text: "6 Hours",
+            Checkpoints: 1,
+            Unix: 21600
         },
         {
-            Text = "12 Hours",
-            Checkpoints = 2,
-            Unix = 43200
+            Text: "12 Hours",
+            Checkpoints: 2,
+            Unix: 43200
         },
         {
-            Text = "1 Day",
-            Checkpoints = 3,
-            Unix = 86400
+            Text: "1 Day",
+            Checkpoints: 3,
+            Unix: 86400
         },
         {
-            Text = "3 Days",
-            Checkpoints = 5,
-            Unix = 259200
+            Text: "3 Days",
+            Checkpoints: 5,
+            Unix: 259200
         },
         {
-            Text = "5 Days",
-            Checkpoints = 8,
-            Unix = 432000
+            Text: "5 Days",
+            Checkpoints: 8,
+            Unix: 432000
         },
         {
-            Text = "7 Days",
-            Checkpoints = 10,
-            Unix = 604800
+            Text: "7 Days",
+            Checkpoints: 10,
+            Unix: 604800
         }
     ]
     let unix
