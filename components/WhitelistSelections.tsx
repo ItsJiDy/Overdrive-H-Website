@@ -9,33 +9,33 @@ export default function Home() {
     {
       title: "6 Hours",
       keyDuration: "6 Hours",
-      checkpoints: "1",
+      checkpoints: "1"
     },
     {
       title: "12 Hours",
       keyDuration: "12 Hours",
-      checkpoints: "2",
+      checkpoints: "2"
     },
     {
       title: "1 Day",
       keyDuration: "24 Hours",
-      checkpoints: "3",
+      checkpoints: "3"
     },
     {
       title: "3 Days",
       keyDuration: "48 Hours",
-      checkpoints: "5",
+      checkpoints: "5"
     },
     {
       title: "5 Days",
       keyDuration: "120 Hours",
-      checkpoints: "8",
+      checkpoints: "8"
     },
     {
       title: "7 Days",
       keyDuration: "168 Hours",
-      checkpoints: "10",
-    },
+      checkpoints: "10"
+    }
   ]
   const [hwid, setHwid] = useState("")
   
@@ -49,7 +49,7 @@ export default function Home() {
      setHwid(s)
   }, []);
 
-  return (
+  return (<>
     <section className="flex flex-col items-center justify-center min-h-screen text-center px-4">
     <main className="container mx-auto py-10 px-4">
       <br />
@@ -90,7 +90,7 @@ export default function Home() {
         ))}
       </div>
     </main>
-    </section>
+    </section></>
   )
 }
 
