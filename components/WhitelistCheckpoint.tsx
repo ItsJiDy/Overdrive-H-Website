@@ -118,7 +118,7 @@ export default function Checkpoint() {
         window.location.href = "/whitelist/checkpoint"
         return
     } else {
-        if ((decryption_key / special_key) / special_key) == 64000) {
+        if (((decryption_key / special_key) / special_key) == 64000) {
             let current_checkpoint = parseInt(localstorage.getItem("hdocnoOe"))
             if (!current_checkpoint) {
                 current_checkpoint = 0
