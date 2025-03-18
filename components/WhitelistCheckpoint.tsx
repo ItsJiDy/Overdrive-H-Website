@@ -141,6 +141,20 @@ export default function Checkpoint() {
                     setLink("https://link-hub.net/978899/overdrive-h-checkpoint-2")
                 } else if (current_checkpoint === 2) {
                     setLink("https://direct-link.net/978899/overdrive-h-checkpoint-3")
+                } else if (current_checkpoint === 3) {
+                    setLink("https://direct-link.net/978899/overdrive-h-checkpoint-4")
+                } else if (current_checkpoint === 4) {
+                    setLink("https://direct-link.net/978899/overdrive-h-checkpoint-5")
+                } else if (current_checkpoint === 5) {
+                    setLink("https://direct-link.net/978899/overdrive-h-checkpoint-6")
+                } else if (current_checkpoint === 6) {
+                    setLink("https://direct-link.net/978899/overdrive-h-checkpoint-7")
+                } else if (current_checkpoint === 7) {
+                    setLink("https://direct-link.net/978899/overdrive-h-checkpoint-8")
+                } else if (current_checkpoint === 8) {
+                    setLink("https://direct-link.net/978899/overdrive-h-checkpoint-9")
+                } else if (current_checkpoint === 9) {
+                    setLink("https://direct-link.net/978899/overdrive-h-checkpoint-10")
                 }
             }
         } else {
