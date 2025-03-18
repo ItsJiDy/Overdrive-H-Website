@@ -135,14 +135,12 @@ export default function Checkpoint() {
                 if (current_checkpoint == total_checkpoints) {
                     setButton(false)
                     document.getElementById("description").textContent = "You have been authenticated!"
-                } else {
-                    if (current_checkpoint == 0) {
-                        setLink("https://link-hub.net/978899/overdrive-h-key-system")
-                    } else if (current_checkpoint === 1) {
-                        setLink("https://link-hub.net/978899/overdrive-h-checkpoint-2")
-                    } else if (current_checkpoint === 2) {
-                        setLink("https://direct-link.net/978899/overdrive-h-checkpoint-3")
-                    }
+                } else if (current_checkpoint == 0) {
+                    setLink("https://link-hub.net/978899/overdrive-h-key-system")
+                } else if (current_checkpoint === 1) {
+                    setLink("https://link-hub.net/978899/overdrive-h-checkpoint-2")
+                } else if (current_checkpoint === 2) {
+                    setLink("https://direct-link.net/978899/overdrive-h-checkpoint-3")
                 }
             }
         } else {
@@ -160,7 +158,7 @@ export default function Checkpoint() {
       if (completedCaptcha) {
           window.location.href = link
       }
-  }, [])
+  }, [completedCaptcha])
 
   return (
     <> <FadeInSection>
