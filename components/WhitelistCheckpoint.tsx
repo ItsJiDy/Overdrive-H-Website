@@ -123,15 +123,18 @@ export default function Checkpoint() {
 
     const authentication = async () => {
       try {
-        const response = await axios.post("http://localhost:3000/v1/whitelist?i=" + hexEncode(Math.floor(Date.now() / 1000) + " " + hwid + " " + unix))
+        const response = await axios.post("http://127.0.0.1/v1/whitelist?i=" + hexEncode(Math.floor(Date.now() / 1000) + " " + hwid + " " + unix))
         if (response.data.status == 200) {
+          localstorage.removeItem("hdocnoOe")
           window.location.href = "/whitelist/checkpoint"
+          return
         }
       } catch {}
+      await authentication()
     };
 
     const main = async () => {
-      const response = await axios.get("http://localhost:3000/v1/whitelist?d=" + hwid)
+      const response = await axios.get("http://127.0.0.1/v1/whitelist?d=" + hwid)
       if (response.data.valid) {
         setButton(false)
         setCaptcha(false)

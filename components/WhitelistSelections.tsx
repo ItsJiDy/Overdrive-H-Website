@@ -20,9 +20,13 @@ export default function Home() {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    const s = searchParams.get("d");
+    const s = searchParams.get("HWID");
 
-    if (!s) {
+    function hexDecode(hexStr) {
+      return hexStr.match(/.{1,2}/g).map(byte => String.fromCharCode(parseInt(byte, 16) / 2)).join("");
+    }
+
+    if (!s || !parseInt(hexDecode(s))) {
       window.location.replace("/");
       return;
     }
@@ -55,7 +59,7 @@ export default function Home() {
                     <Button 
                       className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all duration-300 ease-in-out transform hover:scale-105 flex justify-center"
                       onClick={() => {
-                        localStorage.setItem("vKoeldnIw", index);
+                        localStorage.setItem("vKoeldnIw", index + 1);
                         localStorage.setItem("JdokSbox", hwid);
                         window.location.href = "/whitelist/checkpoint";
                       }}
