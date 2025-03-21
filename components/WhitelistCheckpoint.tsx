@@ -139,7 +139,7 @@ export default function Checkpoint() {
       const response = await axios.get("https://corsproxy.io/?url=https://api.overdrivehub.xyz/v1/whitelist/" + hwid)
       if (response.data.valid) {
         setButton(false)
-        setCaptcha(false)
+        setCaptchaIcon(false)
         document.getElementById("description").textContent = "You have been authenticated!"
       } else {
         if (!special_key || !decryption_key) {
@@ -165,7 +165,7 @@ export default function Checkpoint() {
                     document.getElementById("completed_checkpoints").textContent = current_checkpoint.toString()
                     if (current_checkpoint == total_checkpoints) {
                         setButton(false)
-                        setCaptcha(false)
+                        setCaptchaIcon(false)
                         document.getElementById("description").textContent = "Authenticating..."
                         await authentication()
                     } else if (current_checkpoint == 0) {
