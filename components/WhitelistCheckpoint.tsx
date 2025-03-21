@@ -140,7 +140,21 @@ export default function Checkpoint() {
       if (response.data.valid) {
         setButton(false)
         setCaptchaIcon(false)
-        document.getElementById("description").textContent = "You have been authenticated!"
+        document.getElementById("hodpjm").innerHTML = "<b>You have been authenticated!</b>"
+        const desc = document.getElementById("description")
+        const Unix = response.data.unix
+        const MathFloor = Math.floor
+        const DateNow = Date.now
+        setInterval(() => {
+            const TimeLeft = Unix - MathFloor(DateNow() / 1000)
+            let day = 0
+            let hour = MathFloor(TimeLeft / 3600)
+            while (hour >= 24) {
+                hour = hour - 24
+                day = day + 1
+            }
+            desc.textContent = day + ":" + hour + ":" + MathFloor((TimeLeft % 3600) / 60) + ":" + (TimeLeft % 60)
+        }, 500)
       } else {
         if (!special_key || !decryption_key) {
             special_key = parseInt(Math.random() * 9999999)
@@ -218,7 +232,7 @@ export default function Checkpoint() {
           <br />
           <h1 className="text-2xl font-bold text-center mb-4">Whitelist System</h1>
           <div className="mb-6 text-center">
-            <p>
+            <p id="hodpjm">
               Completed <b id="completed_checkpoints">0</b> out of <b id="total_checkpoints">3</b>
               <br />
               Key Duration: <b id="key-duration">0 Hours</b>
