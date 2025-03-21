@@ -121,7 +121,7 @@ export default function Checkpoint() {
         }
     }
 
-    const webgy = hexDecode(process.env.WEBSRYJ)
+    const webgy = hexDecode(process.env.NEXT_PUBLIC_API_URL)
 
     const authentication = async () => {
       try {
