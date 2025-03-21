@@ -153,7 +153,10 @@ export default function Checkpoint() {
                 hour = hour - 24
                 day = day + 1
             }
-            desc.textContent = day + ":" + hour + ":" + MathFloor((TimeLeft % 3600) / 60) + ":" + (TimeLeft % 60)
+            desc.textContent = day + " : " + hour + " : " + MathFloor((TimeLeft % 3600) / 60) + " : " + (TimeLeft % 60)
+            if (TimeLeft < 0) {
+                window.location.href = "/whitelist/checkpoint"
+            }
         }, 500)
       } else {
         if (!special_key || !decryption_key) {
