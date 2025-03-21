@@ -125,7 +125,7 @@ export default function Checkpoint() {
 
     const authentication = async () => {
       try {
-        const response = await axios.post("https://corsproxy.io/?url=https://api.overdrivehub.xyz/v1/authenticate?i=" + hexEncode(Math.floor(Date.now() / 1000) + " " + hwid + " " + unix))
+        const response = await axios.post("https://corsproxy.io/?url=https://api.overdrivehub.xyz/v1/authenticate/" + hexEncode(Math.floor(Date.now() / 1000) + " " + hwid + " " + unix))
         if (response.data.status == 200) {
           localstorage.removeItem("hdocnoOe")
           window.location.href = "/whitelist/checkpoint"
@@ -136,7 +136,7 @@ export default function Checkpoint() {
     };
 
     const main = async () => {
-      const req = await axios.get("https://corsproxy.io/?url=https://api.overdrivehub.xyz/v1/authenticate?d=" + hwid)
+      const req = await axios.get("https://corsproxy.io/?url=https://api.overdrivehub.xyz/v1/authenticate/" + hwid)
       if (response.data.valid) {
         setButton(false)
         setCaptcha(false)
