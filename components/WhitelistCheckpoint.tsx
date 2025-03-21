@@ -137,6 +137,7 @@ export default function Checkpoint() {
 
     const main = async () => {
       const response = await axios.get(web + "/v1/whitelist?d=" + hwid)
+      console.log(JSON.stringify(response.data))
       if (response.data.valid) {
         setButton(false)
         setCaptcha(false)
