@@ -121,7 +121,7 @@ export default function Checkpoint() {
         }
     }
 
-    const webgy = process.env.WEBSRYJ
+    const webgy = hexDecode(process.env.WEBSRYJ)
 
     const authentication = async () => {
       try {
