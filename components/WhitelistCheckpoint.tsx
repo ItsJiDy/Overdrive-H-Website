@@ -145,7 +145,7 @@ export default function Checkpoint() {
         const Unix = response.data.unix
         const MathFloor = Math.floor
         const DateNow = Date.now
-        setInterval(() => {
+        const timer = () => {
             const TimeLeft = Unix - MathFloor(DateNow() / 1000)
             let day = 0
             let hour = MathFloor(TimeLeft / 3600)
@@ -157,7 +157,9 @@ export default function Checkpoint() {
             if (TimeLeft < 0) {
                 window.location.href = "/whitelist/checkpoint"
             }
-        }, 500)
+        }
+        timer()
+        setInterval(timer, 500)
       } else {
         if (!special_key || !decryption_key) {
             special_key = parseInt(Math.random() * 9999999)

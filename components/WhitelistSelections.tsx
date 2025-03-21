@@ -51,7 +51,7 @@ export default function Home() {
                   </CardHeader>
                   <CardContent className="flex-grow">
                     <div className="space-y-2 text-center">
-                      <p>Key Duration: <b>{option.keyDuration}</b></p>
+                      <p>Whitelist Duration: <b>{option.keyDuration}</b></p>
                       <p>Checkpoints: <b>{option.checkpoints}</b></p>
                     </div>
                   </CardContent>
@@ -61,6 +61,8 @@ export default function Home() {
                       onClick={() => {
                         localStorage.setItem("vKoeldnIw", index + 1);
                         localStorage.setItem("JdokSbox", hwid);
+                        localStorage.removeItem("hdocnoOe")
+                        localStorage.removeItem("seiVi")
                         window.location.href = "/whitelist/checkpoint";
                       }}
                     >
