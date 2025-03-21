@@ -121,11 +121,11 @@ export default function Checkpoint() {
         }
     }
 
-    const web = process.env.WEBSRYJ
+    const webgy = process.env.WEBSRYJ
 
     const authentication = async () => {
       try {
-        const response = await axios.post(web + "/v1/whitelist?i=" + hexEncode(Math.floor(Date.now() / 1000) + " " + hwid + " " + unix))
+        const response = await axios.post(webgy + "/v1/whitelist?i=" + hexEncode(Math.floor(Date.now() / 1000) + " " + hwid + " " + unix))
         if (response.data.status == 200) {
           localstorage.removeItem("hdocnoOe")
           window.location.href = "/whitelist/checkpoint"
@@ -136,7 +136,7 @@ export default function Checkpoint() {
     };
 
     const main = async () => {
-      const response = await axios.get(web + "/v1/whitelist?d=" + hwid)
+      const response = await axios.get(webgy + "/v1/whitelist?d=" + hwid)
       console.log(JSON.stringify(response.data))
       if (response.data.valid) {
         setButton(false)
