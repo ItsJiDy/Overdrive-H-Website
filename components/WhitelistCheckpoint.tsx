@@ -4,6 +4,7 @@ import Script from "next/script"
 import { useEffect, useState, useCallback } from "react"
 import { ArrowRightFromLine, Copy, Check, ChevronRight } from "lucide-react"
 import { FadeInSection } from "@/utils/fadeInSection"
+import axios from "axios"
 
 export default function Checkpoint() {
   const [continueIcon, setContinueIcon] = useState(false)
@@ -124,9 +125,8 @@ export default function Checkpoint() {
 
     const authentication = async () => {
       try {
-        const req = await fetch("/api/authenticate?i=" + hexEncode(Math.floor(Date.now() / 1000) + " " + hwid + " " + unix))
-        const response = await req.json()
-        if (response.status == 200) {
+        const response = await axios.post("https://corsproxy.io/?url=https://api.overdrivehub.xyz/v1/authenticate?i=" + hexEncode(Math.floor(Date.now() / 1000) + " " + hwid + " " + unix))
+        if (response.data.status == 200) {
           localstorage.removeItem("hdocnoOe")
           window.location.href = "/whitelist/checkpoint"
           return
@@ -136,9 +136,8 @@ export default function Checkpoint() {
     };
 
     const main = async () => {
-      const req = await fetch("/api/checkwhitelist?d=" + hwid)
-      const response = await req.json()
-      if (response.valid) {
+      const req = await axios.get("https://corsproxy.io/?url=https://api.overdrivehub.xyz/v1/authenticate?d=" + hwid)
+      if (response.data.valid) {
         setButton(false)
         setCaptcha(false)
         document.getElementById("description").textContent = "You have been authenticated!"
