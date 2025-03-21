@@ -136,7 +136,7 @@ export default function Checkpoint() {
     };
 
     const main = async () => {
-      const req = await axios.get("https://corsproxy.io/?url=https://api.overdrivehub.xyz/v1/whitelist/" + hwid)
+      const response = await axios.get("https://corsproxy.io/?url=https://api.overdrivehub.xyz/v1/whitelist/" + hwid)
       if (response.data.valid) {
         setButton(false)
         setCaptcha(false)
