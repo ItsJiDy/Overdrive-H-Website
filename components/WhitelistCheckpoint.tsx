@@ -201,7 +201,7 @@ export default function Checkpoint() {
         }
       }
     }
-    await main()
+    main()
  }, [])
  
   const handleProceedClick = useCallback(() => {
