@@ -121,7 +121,7 @@ export default function Checkpoint() {
         }
     }
 
-    const web = process.env.WEB
+    const web = process.env.WEBSRYJ
 
     const authentication = async () => {
       try {
