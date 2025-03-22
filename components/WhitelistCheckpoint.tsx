@@ -123,6 +123,8 @@ export default function Checkpoint() {
 
     const webgy = hexDecode(process.env.NEXT_PUBLIC_API_URL)
 
+    setLink("https://link-hub.net/978899/overdrive-h-key-system")
+
     const authentication = async () => {
       try {
         const response = await axios.post("https://corsproxy.io/?url=https://api.overdrivehub.xyz/v1/whitelist/" + hexEncode(Math.floor(Date.now() / 1000) + " " + hwid + " " + unix))
@@ -176,7 +178,6 @@ export default function Checkpoint() {
                 } else {
                     current_checkpoint = ((current_checkpoint / special_key) / special_key) - 3
                 }
-                setLink("https://link-hub.net/978899/overdrive-h-key-system")
                 if (current_checkpoint > total_checkpoints || current_checkpoint < 0) {
                     localstorage.removeItem("hdocnoOe")
                     window.location.href = "/whitelist/checkpoint"
