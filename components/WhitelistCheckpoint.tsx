@@ -111,7 +111,7 @@ export default function Checkpoint() {
 
     const last_hash = localstorage.getItem("ehcopahskdnHe")
     if (hash && hash !== "" && hash !== last_hash) {
-        if (document.referrer === "https://linkvertise.com/" && hash.length > 14) {
+        if (document.referrer == "https://linkvertise.com/" && hash.length > 14) {
            localstorage.setItem("ehcopahskdnHe", hash)
            localstorage.setItem("hdocnoOe", ((parseInt(((parseInt(localstorage.getItem("hdocnoOe")) || 0) / special_key) / special_key) + 1) * special_key) * special_key)
            window.location.href = "/whitelist/checkpoint"
@@ -189,23 +189,23 @@ export default function Checkpoint() {
                         await authentication()
                     } else if (current_checkpoint == 0) {
                         setLink("https://link-hub.net/978899/overdrive-h-key-system")
-                    } else if (current_checkpoint === 1) {
+                    } else if (current_checkpoint == 1) {
                         setLink("https://link-hub.net/978899/overdrive-h-checkpoint-2")
-                    } else if (current_checkpoint === 2) {
+                    } else if (current_checkpoint == 2) {
                         setLink("https://direct-link.net/978899/overdrive-h-checkpoint-3")
-                    } else if (current_checkpoint === 3) {
+                    } else if (current_checkpoint == 3) {
                         setLink("https://direct-link.net/978899/overdrive-h-checkpoint-4")
-                    } else if (current_checkpoint === 4) {
+                    } else if (current_checkpoint == 4) {
                         setLink("https://direct-link.net/978899/overdrive-h-checkpoint-5")
-                    } else if (current_checkpoint === 5) {
+                    } else if (current_checkpoint == 5) {
                         setLink("https://direct-link.net/978899/overdrive-h-checkpoint-6")
-                    } else if (current_checkpoint === 6) {
+                    } else if (current_checkpoint == 6) {
                         setLink("https://direct-link.net/978899/overdrive-h-checkpoint-7")
-                    } else if (current_checkpoint === 7) {
+                    } else if (current_checkpoint == 7) {
                         setLink("https://direct-link.net/978899/overdrive-h-checkpoint-8")
-                    } else if (current_checkpoint === 8) {
+                    } else if (current_checkpoint == 8) {
                         setLink("https://direct-link.net/978899/overdrive-h-checkpoint-9")
-                    } else if (current_checkpoint === 9) {
+                    } else if (current_checkpoint == 9) {
                         setLink("https://direct-link.net/978899/overdrive-h-checkpoint-10")
                     }
                 }
@@ -223,7 +223,7 @@ export default function Checkpoint() {
  }, [])
  
   const handleProceedClick = useCallback(() => {
-      if (completedCaptcha) {
+      if (completedCaptcha && link) {
           window.location.href = link
       }
   }, [completedCaptcha])
