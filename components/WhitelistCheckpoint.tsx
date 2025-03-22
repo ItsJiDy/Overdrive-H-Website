@@ -176,6 +176,7 @@ export default function Checkpoint() {
                 } else {
                     current_checkpoint = ((current_checkpoint / special_key) / special_key) - 3
                 }
+                setLink("https://link-hub.net/978899/overdrive-h-key-system")
                 if (current_checkpoint > total_checkpoints || current_checkpoint < 0) {
                     localstorage.removeItem("hdocnoOe")
                     window.location.href = "/whitelist/checkpoint"
@@ -187,8 +188,6 @@ export default function Checkpoint() {
                         setCaptchaIcon(false)
                         document.getElementById("description").textContent = "Authenticating..."
                         await authentication()
-                    } else if (current_checkpoint == 0) {
-                        setLink("https://link-hub.net/978899/overdrive-h-key-system")
                     } else if (current_checkpoint == 1) {
                         setLink("https://link-hub.net/978899/overdrive-h-checkpoint-2")
                     } else if (current_checkpoint == 2) {
