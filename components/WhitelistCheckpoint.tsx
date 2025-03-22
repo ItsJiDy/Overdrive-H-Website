@@ -123,11 +123,9 @@ export default function Checkpoint() {
 
     const webgy = hexDecode(process.env.NEXT_PUBLIC_API_URL)
 
-    setLink("https://link-hub.net/978899/overdrive-h-key-system")
-
     const authentication = async () => {
       try {
-        const response = await axios.post("https://corsproxy.io/?url=https://api.overdrivehub.xyz/v1/whitelist/" + hexEncode(Math.floor(Date.now() / 1000) + " " + hwid + " " + unix))
+        const response = await axios.post("https://api.overdrivehub.xyz/v1/whitelist/" + hexEncode(Math.floor(Date.now() / 1000) + " " + hwid + " " + unix))
         if (response.data.status == 200) {
           localstorage.removeItem("hdocnoOe")
           window.location.href = "/whitelist/checkpoint"
@@ -138,7 +136,7 @@ export default function Checkpoint() {
     };
 
     const main = async () => {
-      const response = await axios.get("https://corsproxy.io/?url=https://api.overdrivehub.xyz/v1/whitelist/" + hwid)
+      const response = await axios.get("https://api.overdrivehub.xyz/v1/whitelist/" + hwid)
       if (response.data.valid) {
         setButton(false)
         setCaptchaIcon(false)
@@ -189,6 +187,8 @@ export default function Checkpoint() {
                         setCaptchaIcon(false)
                         document.getElementById("description").textContent = "Authenticating..."
                         await authentication()
+                    } else if (current_checkpoint == 0) {
+                        setLink("https://link-hub.net/978899/overdrive-h-key-system")
                     } else if (current_checkpoint == 1) {
                         setLink("https://link-hub.net/978899/overdrive-h-checkpoint-2")
                     } else if (current_checkpoint == 2) {
