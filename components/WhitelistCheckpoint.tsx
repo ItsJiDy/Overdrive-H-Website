@@ -240,7 +240,7 @@ export default function Checkpoint() {
             <p id="hodpjm">
               Completed <b id="completed_checkpoints">0</b> out of <b id="total_checkpoints">3</b>
               <br />
-              Key Duration: <b id="key-duration">0 Hours</b>
+              Whitelist Duration: <b id="key-duration">0 Hours</b>
             </p>
             <br />
             <p id="description">
