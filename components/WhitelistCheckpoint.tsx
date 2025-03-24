@@ -17,7 +17,8 @@ export default function Checkpoint() {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search)
-    const hash = searchParams.get("hash")
+    const hash = searchParams.get("eruVpen")
+    const hash2 = searchParams.get("auroVepBe")
     const localstorage = localStorage
 
     setTimeout(() => {
@@ -111,17 +112,21 @@ export default function Checkpoint() {
 
     const last_hash = localstorage.getItem("ehcopahskdnHe")
     if (hash && hash !== "" && hash !== last_hash) {
-        if (document.referrer == "https://linkvertise.com/" && hash.length > 14) {
-           localstorage.setItem("ehcopahskdnHe", hash)
-           localstorage.setItem("hdocnoOe", ((parseInt(((parseInt(localstorage.getItem("hdocnoOe")) || 0) / special_key) / special_key) + 1) * special_key) * special_key)
-           window.location.href = "/whitelist/checkpoint"
-           return
-        } else {
-           setBypassed(true)
+        try {
+            const hash_now = hexDecode(hash)
+            const hash2_now = parseInt(hexDecode(hexDecode(hash2)))
+            if (hash_now && hash2_now && (Math.floor(Date.now() / 1000) - hash2_now) < 30 && hash_now.length > 25) {
+               localstorage.setItem("ehcopahskdnHe", hash)
+               localstorage.setItem("hdocnoOe", ((parseInt(((parseInt(localstorage.getItem("hdocnoOe")) || 0) / special_key) / special_key) + 1) * special_key) * special_key)
+               window.location.href = "/whitelist/checkpoint"
+               return
+            } else {
+               setBypassed(true)
+            }
+        } catch {
+            setBypassed(true)
         }
     }
-
-    const webgy = hexDecode(process.env.NEXT_PUBLIC_API_URL)
 
     const authentication = async () => {
       try {
