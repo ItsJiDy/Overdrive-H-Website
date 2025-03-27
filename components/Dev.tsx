@@ -49,7 +49,7 @@ const Dev = () => {
                   Owner
                   <br />
                   <br />
-                  <b>JavaScript (Node & Next)</b>, <b>React</b>, <b>Lua (5.1 - 5.3)</b>, <b>Luau</b>, <b>HTML</b> and <b>C++</b>
+                  <b>JavaScript (Node & Next)</b>, <b>React (JSX & TSX)</b>, <b>Lua (5.1 - 5.3)</b>, <b>Luau</b>, <b>HTML</b>, <b>C++</b> and <b>CSS</b>
                 </p>
               </div>
               <div
