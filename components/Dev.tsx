@@ -10,7 +10,11 @@ const Dev = () => {
         let a = await fetch("https://discord.com/api/v9/invites/dudJwCefnQ")
         a = await a.json()
         document.getElementById("main_coder_name").textContent = a.inviter.global_name;
-        document.getElementById("main_coder_image").src = "https://cdn.discordapp.com/avatars/" + a.inviter.id + "/" + a.inviter.avatar + ".png"
+        try {
+            document.getElementById("main_coder_image").src = "https://cdn.discordapp.com/avatars/" + a.inviter.id + "/" + a.inviter.avatar + ".gif"
+        } catch {
+            document.getElementById("main_coder_image").src = "https://cdn.discordapp.com/avatars/" + a.inviter.id + "/" + a.inviter.avatar + ".png"
+        }
     }
     init()
   }, [])
