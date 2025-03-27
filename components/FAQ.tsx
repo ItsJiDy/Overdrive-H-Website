@@ -13,22 +13,22 @@ const faqs = [
   {
     question: "How do I use the script?",
     answer:
-      "Simply copy the provided script and execute it on your executor.",
+      "Copy the provided script and run it using your current executor.",
   },
   {
     question: "Is the script safe to use?",
     answer:
-      "Yes, the script are verified and tested for safety. However, always use script responsibly and in accordance with the terms of service.",
+      "Yes, the scripts are verified and tested for safety. However, users should always use them responsibly and in compliance with the Terms of Service.",
   },
   {
     question: "Does Overdrive H requires a key to get access?",
     answer:
-      "Yes, Overdrive H has key system to get access in order for the owner to earn some money.",
+      "Yes, Overdrive H utilizes a key system for access, allowing the owner to generate revenue.",
   },
   {
     question: "Is Overdrive H optimized?",
     answer:
-      "Yes, Overdrive H is very optimized for user experience.",
+      "Yes, Overdrive H is highly optimized, consuming minimal memory and ensuring a smooth, lag-free user experience.",
   },
 ]
 
