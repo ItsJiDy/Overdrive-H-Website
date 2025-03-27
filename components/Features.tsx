@@ -14,7 +14,7 @@ const features = [
   },
   {
     icon: <Sliders className="h-6 w-6" />,
-    title: "Customizable Theme",
+    title: "Customize Theme",
     description: "Tailor it to your needs effortlessly.",
   },
   {
